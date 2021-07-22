@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schön. | eCommerce HTML5 Template</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="~/Assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="~/Assets/css/animate.css">
+    <link rel="stylesheet" href="~/Assets/css/icon-fonts.css">
+    <link rel="stylesheet" href="~/Assets/css/main.css">
+    <link rel="stylesheet" href="~/Assets/css/responsive.css">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="pre-loader" class="loader-container">
+            <div class="loader">
+                <img src="~/Assets/images/svg/rings.svg" alt="loader">
+            </div>
+        </div>
+        <div class="w1">
+            @Html.Partial("_Header")
+            @Html.Partial("_SideMenu")
+            @Html.Partial("_Search")
+            @RenderBody()
+            @Html.Partial("_Footer")
+        </div>
+        <span id="back-top" class="fa fa-arrow-up"></span>
+    </div>
+    @Html.Partial("_QuickView");
+    <script src="~/Assets/js/jquery.js"></script>
+    <script src="~/Assets/js/plugins.js"></script>
+    <script src="~/Assets/js/jquery.main.js"></script>
+</body>
+
+</html>
