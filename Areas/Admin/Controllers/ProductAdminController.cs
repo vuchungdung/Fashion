@@ -17,7 +17,7 @@ namespace Fashion.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.ListCategory = new SelectList(db.Categories.ToList(), "CategoryId", "Name", 0);
+            ViewBag.ListCategory = new SelectList(db.Categories.ToList(), "ID", "Name", 0);
             return View();
         }
         [HttpPost]

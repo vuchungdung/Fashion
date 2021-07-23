@@ -146,6 +146,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Library\Helper.cs" />
+    <Compile Include="Library\MailHelper.cs" />
+    <Compile Include="Library\ModelNotification.cs" />
+    <Compile Include="Library\Notification.cs" />
+    <Compile Include="Library\XString.cs" />
     <Compile Include="Migrations\202107211559536_version_1.0.0.cs" />
     <Compile Include="Migrations\202107211559536_version_1.0.0.designer.cs">
       <DependentUpon>202107211559536_version_1.0.0.cs</DependentUpon>
@@ -153,6 +158,10 @@
     <Compile Include="Migrations\202107221351419_version_1.0.1.cs" />
     <Compile Include="Migrations\202107221351419_version_1.0.1.designer.cs">
       <DependentUpon>202107221351419_version_1.0.1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107230832055_version_1.0.2.cs" />
+    <Compile Include="Migrations\202107230832055_version_1.0.2.designer.cs">
+      <DependentUpon>202107230832055_version_1.0.2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -2920,6 +2929,11 @@
     <Content Include="Areas\Admin\Assets\bower_components\ckeditor\skins\moono\skin.js" />
     <Content Include="Areas\Admin\Assets\bower_components\ckeditor\styles.js" />
     <Content Include="Areas\Admin\Assets\bower_components\ckeditor\vendor\promise.js" />
+    <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\css\dataTables.bootstrap.css" />
+    <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\css\dataTables.bootstrap.min.css" />
+    <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\js\dataTables.bootstrap.js" />
+    <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\js\dataTables.bootstrap.min.js" />
+    <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\License.txt" />
     <Content Include="Areas\Admin\Assets\bower_components\datatables.net\js\jquery.dataTables.js" />
     <Content Include="Areas\Admin\Assets\bower_components\datatables.net\js\jquery.dataTables.min.js" />
     <Content Include="Areas\Admin\Assets\bower_components\datatables.net\License.txt" />
@@ -6011,6 +6025,10 @@
     <Content Include="Areas\Admin\Assets\documentation\docs.js" />
     <Content Include="Areas\Admin\Assets\documentation\index.html" />
     <Content Include="Areas\Admin\Assets\documentation\style.css" />
+    <Content Include="Areas\Admin\Assets\plugins\alert\sweetalert2.min.css" />
+    <Content Include="Areas\Admin\Assets\plugins\alert\sweetalert2.min.js" />
+    <Content Include="Areas\Admin\Assets\plugins\alert\toastr.min.css" />
+    <Content Include="Areas\Admin\Assets\plugins\alert\toastr.min.js" />
     <Content Include="Areas\Admin\Assets\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Areas\Admin\Assets\plugins\bootstrap-slider\slider.css" />
     <Content Include="Areas\Admin\Assets\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
@@ -6759,6 +6777,12 @@
     <Content Include="Areas\Admin\Assets\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Areas\Admin\Assets\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Admin\Assets\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Admin\Views\Shared\_MessageAlert.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryAdmin\List.cshtml" />
+    <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\.bower.json" />
+    <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\bower.json" />
+    <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\Readme.md" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -6797,7 +6821,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\AuthAdmin\" />
-    <Folder Include="Areas\Admin\Views\CategoryAdmin\" />
     <Folder Include="Areas\Admin\Views\CustomerAdmin\" />
     <Folder Include="Areas\Admin\Views\DiscountAdmin\" />
     <Folder Include="Areas\Admin\Views\OrderAdmin\" />
@@ -6826,6 +6849,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107221351419_version_1.0.1.resx">
       <DependentUpon>202107221351419_version_1.0.1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107230832055_version_1.0.2.resx">
+      <DependentUpon>202107230832055_version_1.0.2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
