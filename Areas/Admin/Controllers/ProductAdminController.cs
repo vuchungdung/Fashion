@@ -1,4 +1,5 @@
-﻿using Fashion.Models;
+﻿using Fashion.Library;
+using Fashion.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,39 @@ namespace Fashion.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Product product)
         {
-            return View();
+            try
+            {
+                Product entity = new Product();
+                entity.Name = product.Name;
+                entity.Alias = XString.ToAscii(product.Name);
+                entity.CategoryId = product.CategoryId;
+                entity.Image = product.Image;
+                entity.OriginalPrice = product.OriginalPrice;
+                entity.Price = product.Price;
+                entity.PromotionPrice = product.PromotionPrice;
+                entity.Description = product.Description;
+                entity.Content = product.Content;
+                entity.HomeFlag = product.HomeFlag;
+                entity.HotFlag = product.HotFlag;
+                entity.ViewCount = 0;
+                entity.Quantity = product.Quantity;
+                entity.QrCode = product.QrCode;
+                entity.Status = product.Status;
+                db.Products.Add(entity);
+                db.SaveChanges();
+                Notification.set_flash("Thêm mới sản phẩm thành công!", "success");
+                return View();
+            }
+            catch
+            {
+                Notification.set_flash("Thêm mới sản phẩm thất bại!", "danger");
+                throw;
+            }
         }
         public ActionResult List()
         {
-            return View();
+            var result = db.Products.OrderByDescending(x => x.ID).ToList();
+            return View(result);
         }
     }
 }

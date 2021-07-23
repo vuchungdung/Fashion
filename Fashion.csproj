@@ -48,6 +48,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CKFinder, Version=2.6.0.2792, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\CKFinder.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -6352,6 +6356,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Lib\CKFinder.dll" />
     <Content Include="Lib\QRCoder.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -6794,6 +6799,81 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="UploadedFiles\images\img01.jpg" />
+    <Content Include="UploadedFiles\images\img02.jpg" />
+    <Content Include="UploadedFiles\images\img03.jpg" />
+    <Content Include="UploadedFiles\images\img04.jpg" />
+    <Content Include="UploadedFiles\images\img05.jpg" />
+    <Content Include="UploadedFiles\images\img06.jpg" />
+    <Content Include="UploadedFiles\images\img07.jpg" />
+    <Content Include="UploadedFiles\images\img08.jpg" />
+    <Content Include="UploadedFiles\images\img09.jpg" />
+    <Content Include="UploadedFiles\images\img10.jpg" />
+    <Content Include="UploadedFiles\images\img11.jpg" />
+    <Content Include="UploadedFiles\images\img12.jpg" />
+    <Content Include="UploadedFiles\images\img13.jpg" />
+    <Content Include="UploadedFiles\images\img14.jpg" />
+    <Content Include="UploadedFiles\images\img15.jpg" />
+    <Content Include="UploadedFiles\images\img16.jpg" />
+    <Content Include="UploadedFiles\images\img17.jpg" />
+    <Content Include="UploadedFiles\images\img18.jpg" />
+    <Content Include="UploadedFiles\images\img19.jpg" />
+    <Content Include="UploadedFiles\images\img20.jpg" />
+    <Content Include="UploadedFiles\images\img21.jpg" />
+    <Content Include="UploadedFiles\images\img22.jpg" />
+    <Content Include="UploadedFiles\images\img2240.jpg" />
+    <Content Include="UploadedFiles\images\img23.jpg" />
+    <Content Include="UploadedFiles\images\img24.jpg" />
+    <Content Include="UploadedFiles\images\img25.jpg" />
+    <Content Include="UploadedFiles\images\img26.jpg" />
+    <Content Include="UploadedFiles\images\img27.jpg" />
+    <Content Include="UploadedFiles\images\img28.jpg" />
+    <Content Include="UploadedFiles\images\img29.jpg" />
+    <Content Include="UploadedFiles\images\img30.jpg" />
+    <Content Include="UploadedFiles\images\img31.jpg" />
+    <Content Include="UploadedFiles\images\img32.jpg" />
+    <Content Include="UploadedFiles\images\img33.jpg" />
+    <Content Include="UploadedFiles\images\img34.jpg" />
+    <Content Include="UploadedFiles\images\img35.jpg" />
+    <Content Include="UploadedFiles\images\img36.jpg" />
+    <Content Include="UploadedFiles\images\img37.jpg" />
+    <Content Include="UploadedFiles\images\img38.jpg" />
+    <Content Include="UploadedFiles\images\img39.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img01.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img02.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img03.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img04.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img05.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img06.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img07.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img08.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img09.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img10.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img11.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img12.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img13.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img14.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img15.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img16.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img17.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img18.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img19.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img24.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img25.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img26.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img27.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img28.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img29.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img30.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img31.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img32.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img33.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img34.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img35.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img36.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img37.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img38.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\img39.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
