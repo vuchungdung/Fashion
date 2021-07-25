@@ -1,9 +1,10 @@
-﻿@model IEnumerable<Fashion.Models.Category>
+﻿@model IEnumerable<Fashion.Models.Discount>
 
 @{
     ViewBag.Title = "List";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 @Html.Partial("_MessageAlert")
 <script src="~/Areas/Admin/Assets/bower_components/jquery/dist/jquery.min.js"></script>
 <script>
@@ -29,11 +30,11 @@
 <section class="content-header">
     <h1>
         QUẢN LÝ
-        <small>DANH MỤC</small>
+        <small>MÃ GIẢM GIÁ</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="/Admin/Home"><i class="fa fa-dashboard"></i> Trang chính</a></li>
-        <li class="active">Danh mục</li>
+        <li><a href="/Admin/AdminAdmin"><i class="fa fa-dashboard"></i> Trang chính</a></li>
+        <li class="active">Mã giảm giá</li>
     </ol>
 </section>
 
@@ -44,8 +45,8 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Danh sách danh mục</h3>
-                    <a href="/admin/CategoryAdmin/create" style="margin-right:10px;position:absolute;right:0" class="btn btn-success"><i class="fa fa-fw fa-plus"></i>Thêm mới</a>
+                    <h3 class="box-title">Danh sách mã giảm giá</h3>
+                    <a href="/admin/DiscountAdmin/create" style="margin-right:10px;position:absolute;right:0" class="btn btn-success"><i class="fa fa-fw fa-plus"></i>Thêm mới</a>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -53,8 +54,11 @@
                         <thead>
                             <tr>
 
-                                <th>Tên danh mục</th>
-
+                                <th>Mã code</th>
+                                <th>Chi tiết</th>
+                                <th>Số ngày</th>
+                                <th>Ngày tạo</th>
+                                <th>Trạng thái</th>
                                 <th style="width:10%">Thao tác</th>
                             </tr>
                         </thead>
@@ -63,10 +67,17 @@
                             {
                                 <tr>
 
-                                    <td>@item.Name</td>
+                                    <td>@item.Code</td>
+                                    <td>@item.Detail</td>
+
+                                    <td>@item.Time</td>
+                                    <td>@item.CreatedDate.ToString("dd-MM-yyyy")</td>
+                                    <td>
+                                        <input type="checkbox" onclick="changeShow(this)" id="@item.ID" @(item.Status == true ? "checked" : "") />
+                                    </td>
                                     <td class="text-center">
-                                        <a onclick="deleteConfirm(this)" id="@item.ID" data-toggle="modal" data-target="#myModal"><i style="color:red" class="fa fa-fw fa-trash"></i></a>
-                                        <a href="/admin/CategoryAdmin/update/@item.ID"><i style="color:green" class="fa fa-fw fa-pencil"></i></a>
+                                        <a onclick="deleteConfirm(this)" id="@item.Id" data-toggle="modal" data-target="#myModal"><i style="color:red" class="fa fa-fw fa-trash"></i></a>
+                                        <a href="/admin/DiscountAdmin/update/@item.Id"><i style="color:green" class="fa fa-fw fa-pencil"></i></a>
                                     </td>
                                 </tr>
                             }
@@ -74,8 +85,12 @@
                         <tfoot>
                             <tr>
 
-                                <th>Tên danh mục</th>
-                                <th>Thao tác</th>
+                                <th>Mã code</th>
+                                <th>Chi tiết</th>
+                                <th>Số ngày</th>
+                                <th>Ngày tạo</th>
+                                <th>Trạng thái</th>
+                                <th style="width:10%">Thao tác</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -115,7 +130,7 @@
     $('#deleteBtn').click(function () {
         $.ajax({
             type: "POST",
-            url: '/Admin/CategoryAdmin/delete',
+            url: '/Admin/DiscountAdmin/delete',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ id: xid }),
             dataType: "json",
@@ -125,6 +140,22 @@
             }
         });
     })
+    function changeShow(xthis) {
+        var xid = xthis.id;
+        var st = xthis.checked ? true : false;
+        $.ajax({
+            type: "POST",
+            url: '/Admin/DiscountAdmin/changeshow',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ id: xid, status: st }),
+            dataType: "json",
+            success: function (res) {
+                location.reload();
+
+            }
+        });
+    }
 </script>
+
 
 

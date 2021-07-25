@@ -18,7 +18,11 @@ namespace Fashion.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            Discount entity = new Discount()
+            {
+                Code = Guid.NewGuid().ToString().Substring(5, 10).ToUpper()
+            };
+            return View(entity);
         }
         [HttpPost]
         public ActionResult Create(Discount model)
@@ -88,7 +92,7 @@ namespace Fashion.Areas.Admin.Controllers
                 throw;
             }
         }
-        public ActionResult ChangeStatus(int id, bool status)
+        public ActionResult ChangeShow(int id, bool status)
         {
             var model = db.Discounts.Where(x => x.Id == id).FirstOrDefault();
             model.Status = status;

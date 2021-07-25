@@ -6812,6 +6812,16 @@
     <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\Readme.md" />
     <Content Include="Areas\Admin\Views\ProductAdmin\Update.cshtml" />
     <Content Include="Areas\Admin\Views\ProductAdmin\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryAdmin\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountAdmin\List.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountAdmin\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Color\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Color\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Color\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Size\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Size\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Size\Update.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -6925,12 +6935,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\AuthAdmin\" />
-    <Folder Include="Areas\Admin\Views\Color\" />
     <Folder Include="Areas\Admin\Views\CustomerAdmin\" />
-    <Folder Include="Areas\Admin\Views\DiscountAdmin\" />
     <Folder Include="Areas\Admin\Views\OrderAdmin\" />
-    <Folder Include="Areas\Admin\Views\ProductOption\" />
-    <Folder Include="Areas\Admin\Views\Sỉz\" />
     <Folder Include="Areas\Admin\Views\UserAdmin\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
