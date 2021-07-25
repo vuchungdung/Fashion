@@ -12,7 +12,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            @using (Html.BeginForm("Create", "Product", FormMethod.Post))
+            @using (Html.BeginForm("Create", "ProductAdmin", FormMethod.Post))
             {
                 <div class="form-group">
                     <label>Tiêu đề:</label>
@@ -30,6 +30,7 @@
                             <button type="button" class="btn btn-xs btn-default" onclick="chooseImage()" style="margin-top:2px;margin-left:0px">Chọn ảnh</button>
                         </div>
                         <div class="form-group">
+                            @Html.TextBoxFor(model => model.Image, htmlAttributes: new { @style = "display:none" })
                             <img class="img-responsive" style="width:100%;text-align:center;height:360px" id="Img2" src="~/Areas/Admin/assets/dist/img/no-image-available.jpg" alt="Ảnh đại diện" />
                         </div>
                     </div>
@@ -47,8 +48,8 @@
                             @Html.TextBoxFor(model => model.Price, new { @class = "form-control", @required = "true", @type = "number" })
                         </div>
                         <div class="form-group">
-                            <label for="Quiz">Số lượng sản phẩm:</label><br />
-                            @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control", @required = "true", @type = "number" })
+                            <label for="Quiz">Giá khuyến mại:</label><br />
+                            @Html.TextBoxFor(model => model.PromotionPrice, new { @class = "form-control", @required = "true", @type = "number" })
                         </div>
                         <div class="form-group" style="margin-bottom:0px">
                             <label style="padding-right: 10px">Trạng thái</label>
@@ -58,7 +59,7 @@
                 </div>
                 <div class="form-group">
                     <label>Nội dung sản phẩm:</label>
-                    <textarea id="editor1" name="editor1" rows="10" cols="80"></textarea>
+                    <textarea id="editor1" name="content" rows="10" cols="80"></textarea>
                     <script>
                         if ($('#editor1').length > 0) {
                             var editor = CKEDITOR.replace('editor1', {
@@ -81,7 +82,7 @@
     function chooseImage() {
         var finder = new CKFinder();
         finder.selectActionFunction = function (fileUrl) {
-            $('#Img').attr('value', fileUrl);
+            $('#Image').attr('value', fileUrl);
             $('#Img2').attr('src', fileUrl);
         }
         finder.popup();

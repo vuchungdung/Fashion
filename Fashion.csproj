@@ -141,6 +141,7 @@
     <Compile Include="Areas\Admin\Controllers\DiscountAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductOptionController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -167,18 +168,34 @@
     <Compile Include="Migrations\202107230832055_version_1.0.2.designer.cs">
       <DependentUpon>202107230832055_version_1.0.2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107250200235_version_1.0.3.cs" />
+    <Compile Include="Migrations\202107250200235_version_1.0.3.designer.cs">
+      <DependentUpon>202107250200235_version_1.0.3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107250217455_version_1.0.4.cs" />
+    <Compile Include="Migrations\202107250217455_version_1.0.4.designer.cs">
+      <DependentUpon>202107250217455_version_1.0.4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107250315107_version_1.0.5.cs" />
+    <Compile Include="Migrations\202107250315107_version_1.0.5.designer.cs">
+      <DependentUpon>202107250315107_version_1.0.5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Color.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\FSDbContext.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductOption.cs" />
     <Compile Include="Models\ProductTag.cs" />
+    <Compile Include="Models\Size.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Assets\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
@@ -6904,6 +6921,7 @@
     <Folder Include="Areas\Admin\Views\CustomerAdmin\" />
     <Folder Include="Areas\Admin\Views\DiscountAdmin\" />
     <Folder Include="Areas\Admin\Views\OrderAdmin\" />
+    <Folder Include="Areas\Admin\Views\ProductOption\" />
     <Folder Include="Areas\Admin\Views\UserAdmin\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
@@ -6932,6 +6950,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107230832055_version_1.0.2.resx">
       <DependentUpon>202107230832055_version_1.0.2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107250200235_version_1.0.3.resx">
+      <DependentUpon>202107250200235_version_1.0.3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107250217455_version_1.0.4.resx">
+      <DependentUpon>202107250217455_version_1.0.4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107250315107_version_1.0.5.resx">
+      <DependentUpon>202107250315107_version_1.0.5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

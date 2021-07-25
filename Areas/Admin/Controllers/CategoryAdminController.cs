@@ -28,6 +28,7 @@ namespace Fashion.Areas.Admin.Controllers
                 Category entity = new Category();
                 entity.Name = model.Name;
                 entity.Alias = XString.ToAscii(model.Name);
+                entity.CreatedDate = DateTime.Now;
                 db.Categories.Add(entity);
                 db.SaveChanges();
                 Notification.set_flash("Thêm danh mục thành công!", "success");

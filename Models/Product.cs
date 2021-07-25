@@ -31,14 +31,16 @@ namespace Fashion.Models
         [MaxLength(500)]
         public string Description { set; get; }
         public string Content { set; get; }
-        public bool? HomeFlag { set; get; }
+        public bool? ActivePromotion { set; get; }
         public string QrCode { get; set; }
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }
         public EnumStatus Status { get; set; }
-        public int Quantity { set; get; }
         [ForeignKey("CategoryId")]
         public virtual Category Category { set; get; }
         public virtual IEnumerable<ProductTag> ProductTags { set; get; }
+        public virtual IEnumerable<ProductOption> ProductOptions { set; get; }
+        public DateTime CreatedDate { get; set; }
+
     }
 }

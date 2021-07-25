@@ -18,16 +18,14 @@ namespace Fashion.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
-
         public DbSet<ProductTag> ProductTags { get; set; }
-
         public DbSet<Customer> Customers { get; set; }
-
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-
         public DbSet<Discount> Discounts { get; set; }
-
+        public DbSet<ProductOption> ProductOptions { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Size> Sizes { get; set; }
         public static FSDbContext Create()
         {
             return new FSDbContext();

@@ -22,6 +22,7 @@ namespace Fashion.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(Product product)
         {
             try
@@ -36,16 +37,16 @@ namespace Fashion.Areas.Admin.Controllers
                 entity.PromotionPrice = product.PromotionPrice;
                 entity.Description = product.Description;
                 entity.Content = product.Content;
-                entity.HomeFlag = product.HomeFlag;
+                entity.ActivePromotion = product.ActivePromotion;
                 entity.HotFlag = product.HotFlag;
                 entity.ViewCount = 0;
-                entity.Quantity = product.Quantity;
                 entity.QrCode = product.QrCode;
                 entity.Status = product.Status;
+                entity.CreatedDate = DateTime.Now;
                 db.Products.Add(entity);
                 db.SaveChanges();
                 Notification.set_flash("Thêm mới sản phẩm thành công!", "success");
-                return View();
+                return RedirectToAction("List");
             }
             catch
             {

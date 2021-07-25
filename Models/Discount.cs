@@ -21,5 +21,7 @@ namespace Fashion.Models
         public string Detail { get; set; }
         public int Time { get; set; }
         public bool Status { get; set; }
+        public DateTime CreatedDate { get; set; }
+
     }
 }

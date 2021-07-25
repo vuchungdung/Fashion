@@ -29,5 +29,7 @@ namespace Fashion.Models
         public string Password { get; set; }
         public int Status { get; set; }
         public string Image { get; set; }
+        public DateTime CreatedDate { get; set; }
+
     }
 }

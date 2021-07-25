@@ -28,7 +28,7 @@ namespace Fashion.Models
         [Required]
         [MaxLength(256)]
         public string CustomerMessage { set; get; }
-        public DateTime? CreatedDate { set; get; }
+        public DateTime CreatedDate { set; get; }
         public int CreatedBy { set; get; }
         public int Status { set; get; }
         public string Code { get; set; }

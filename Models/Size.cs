@@ -7,8 +7,8 @@ using System.Web;
 
 namespace Fashion.Models
 {
-    [Table("Categories")]
-    public class Category
+    [Table("Sizes")]
+    public class Size
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,13 +16,6 @@ namespace Fashion.Models
         [Required]
         [MaxLength(256)]
         public string Name { set; get; }
-        [Required]
-        [Column(TypeName = "varchar")]
-        [MaxLength(256)]
-        public string Alias { set; get; }
-        [MaxLength(500)]
-        public string Description { set; get; }
-        public virtual IEnumerable<Product> Products { set; get; }
-        public DateTime CreatedDate { get; set; }
+        public virtual IEnumerable<ProductOption> ProductOptions { set; get; }
     }
 }
