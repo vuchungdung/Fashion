@@ -73,7 +73,7 @@
                                     <td>@item.Time</td>
                                     <td>@item.CreatedDate.ToString("dd-MM-yyyy")</td>
                                     <td>
-                                        <input type="checkbox" onclick="changeShow(this)" id="@item.ID" @(item.Status == true ? "checked" : "") />
+                                        <input type="checkbox" onclick="changeShow(this)" id="@item.Id" @(item.Status == true ? "checked" : "") />
                                     </td>
                                     <td class="text-center">
                                         <a onclick="deleteConfirm(this)" id="@item.Id" data-toggle="modal" data-target="#myModal"><i style="color:red" class="fa fa-fw fa-trash"></i></a>

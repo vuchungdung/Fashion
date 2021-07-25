@@ -15,15 +15,19 @@
             {
                 <div class="form-group">
                     <label>Mã giảm giá:</label>
-                    @Html.TextAreaFor(model => model.Code, htmlAttributes: new { @class = "form-control", @required = "true", @placeholder = "Nhập code" })
+                    @Html.TextBoxFor(model => model.Code, htmlAttributes: new { @class = "form-control", @required = "true", @placeholder = "Nhập code" })
+                </div>
+                <div class="form-group">
+                    <label>Giá trị %:</label>
+                    @Html.TextBoxFor(model => model.Value, htmlAttributes: new { @class = "form-control", @required = "true", @placeholder = "Nhập giá trị %", @type = "number" })
                 </div>
                 <div class="form-group">
                     <label>Chi tiết mã giảm giá:</label>
-                    @Html.TextBoxFor(model => model.Detail, htmlAttributes: new { @class = "form-control", @required = "true", @placeholder = "Nhập code" })
+                    @Html.TextBoxFor(model => model.Detail, htmlAttributes: new { @class = "form-control", @required = "true", @placeholder = "Nhập thông tin mã giảm giá" })
                 </div>
                 <div class="form-group">
                     <label>Thời giản tồn tại:</label>
-                    @Html.TextBoxFor(model => model.Time, htmlAttributes: new { @class = "form-control", @required = "true", @placeholder = "Nhập code", @type="number" })
+                    @Html.TextBoxFor(model => model.Time, htmlAttributes: new { @class = "form-control", @required = "true", @placeholder = "Nhập thời hạn", @type = "number" })
                 </div>
                 <div class="form-group" style="margin-bottom:0px">
                     @Html.CheckBoxFor(model => model.Status) <span style="font-weight:600">Kích hoạt</span>

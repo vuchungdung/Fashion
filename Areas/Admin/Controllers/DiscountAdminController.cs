@@ -32,9 +32,10 @@ namespace Fashion.Areas.Admin.Controllers
                 Discount entity = new Discount();
                 entity.Code = model.Code;
                 entity.Detail = model.Detail;
+                entity.Value = model.Value;
                 entity.Time = model.Time;
                 entity.Status = model.Status;
-                entity.CreatedDate = model.CreatedDate;
+                entity.CreatedDate = DateTime.Now;
                 db.Discounts.Add(entity);
                 db.SaveChanges();
                 Notification.set_flash("Thêm mã giảm giá thành công!", "success");
@@ -65,6 +66,7 @@ namespace Fashion.Areas.Admin.Controllers
                 Discount entity = db.Discounts.Find(Discount.Id);
                 entity.Code = Discount.Code;
                 entity.Detail = Discount.Detail;
+                entity.Value = Discount.Value;
                 entity.Time = Discount.Time;
                 db.SaveChanges();
                 Notification.set_flash("Cập nhật mã giảm giá thành công!", "success");

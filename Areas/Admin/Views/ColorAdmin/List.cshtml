@@ -29,11 +29,11 @@
 <section class="content-header">
     <h1>
         QUẢN LÝ
-        <small>DANH MỤC</small>
+        <small>MÀU SẮC</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="/Admin/Home"><i class="fa fa-dashboard"></i> Trang chính</a></li>
-        <li class="active">Danh mục</li>
+        <li class="active">Màu sắc</li>
     </ol>
 </section>
 
@@ -44,8 +44,8 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Danh sách danh mục</h3>
-                    <a href="/admin/CategoryAdmin/create" style="margin-right:10px;position:absolute;right:0" class="btn btn-success"><i class="fa fa-fw fa-plus"></i>Thêm mới</a>
+                    <h3 class="box-title">Danh sách màu</h3>
+                    <a href="/admin/ColorAdmin/create" style="margin-right:10px;position:absolute;right:0" class="btn btn-success"><i class="fa fa-fw fa-plus"></i>Thêm mới</a>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -53,7 +53,7 @@
                         <thead>
                             <tr>
 
-                                <th>Tên danh mục</th>
+                                <th>Tên màu</th>
 
                                 <th style="width:10%">Thao tác</th>
                             </tr>
@@ -66,7 +66,7 @@
                                     <td>@item.Name</td>
                                     <td class="text-center">
                                         <a onclick="deleteConfirm(this)" id="@item.ID" data-toggle="modal" data-target="#myModal"><i style="color:red" class="fa fa-fw fa-trash"></i></a>
-                                        <a href="/admin/CategoryAdmin/update/@item.ID"><i style="color:green" class="fa fa-fw fa-pencil"></i></a>
+                                        <a href="/admin/ColorAdmin/update/@item.ID"><i style="color:green" class="fa fa-fw fa-pencil"></i></a>
                                     </td>
                                 </tr>
                             }
@@ -74,7 +74,7 @@
                         <tfoot>
                             <tr>
 
-                                <th>Tên danh mục</th>
+                                <th>Tên màu</th>
                                 <th>Thao tác</th>
                             </tr>
                         </tfoot>
@@ -115,7 +115,7 @@
     $('#deleteBtn').click(function () {
         $.ajax({
             type: "POST",
-            url: '/Admin/CategoryAdmin/delete',
+            url: '/Admin/ColorAdmin/delete',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ id: xid }),
             dataType: "json",

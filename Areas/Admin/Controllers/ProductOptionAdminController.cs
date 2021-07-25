@@ -11,8 +11,12 @@ namespace Fashion.Areas.Admin.Controllers
     public class ProductOptionAdminController : Controller
     {
         private FSDbContext db = new FSDbContext();
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
+            ViewBag.ListColors = new SelectList(db.Colors.ToList(), "ID", "Name", 0);
+            ViewBag.ListSizes = new SelectList(db.Sizes.ToList(), "ID", "Name", 0);
+            ViewBag.Product = db.Products.Find(id);
+            ViewBag.Option = db.ProductOptions.Where(x=>x.ProductId == id).ToList();
             return View();
         }
         [HttpGet]
@@ -33,8 +37,9 @@ namespace Fashion.Areas.Admin.Controllers
                 entity.CreatedDate = DateTime.Now;
                 db.ProductOptions.Add(entity);
                 db.SaveChanges();
+                int id = model.ProductId;
                 Notification.set_flash("Thêm thông tin sản phẩm thành công!", "success");
-                return RedirectToAction("List");
+                return RedirectToAction("Index",new { id });
             }
             catch
             {
@@ -60,7 +65,7 @@ namespace Fashion.Areas.Admin.Controllers
                 entity.Count = ProductOption.Count;
                 db.SaveChanges();
                 Notification.set_flash("Cập nhật thông tin sản phẩm thành công!", "success");
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
             }
             catch
             {

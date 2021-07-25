@@ -84,9 +84,18 @@
                                         <input type="checkbox" onclick="changeShow(this)" id="@item.ID" @(item.Status == true ? "checked" : "") />
                                     </td>
                                     <td class="text-center">
-                                        <a onclick="deleteConfirm(this)" id="@item.ID" data-toggle="modal" data-target="#myModal"><i style="color:red" class="fa fa-fw fa-trash"></i></a>
-                                        <a href="/admin/ProductAdmin/update/@item.ID"><i style="color:green" class="fa fa-fw fa-pencil"></i></a>
-                                        <a onclick="infoProduct(this)" id="@item.ID" data-toggle="modal" data-target="#myModal1"><i style="color:blue" class="fa fa-fw fa-info-circle"></i></a>
+                                        <a onclick="viewDetail(this)" id="@item.ID" data-toggle="modal" data-target="#myModal1">
+                                            <i style="color:gray" class="fa fa-fw fa-eye"></i>
+                                        </a>
+                                        <a onclick="deleteConfirm(this)" id="@item.ID" data-toggle="modal" data-target="#myModal">
+                                            <i style="color:red" class="fa fa-fw fa-trash"></i>
+                                        </a>
+                                        <a href="/admin/ProductAdmin/update/@item.ID">
+                                            <i style="color:green" class="fa fa-fw fa-pencil"></i>
+                                        </a>
+                                        <a href="/admin/productoptionadmin/index/@item.ID">
+                                            <i style="color:blue" class="fa fa-fw fa-info-circle"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             }
@@ -121,25 +130,6 @@
             </div>
             <div class="modal-body">
                 Bạn có thật sự muốn xóa dữ liệu này ?
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="deleteBtn" class="btn btn-danger" data-dismiss="modal">Xóa</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-<div class="modal fade" id="myModal1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Nhập thông tin chi tiết sản phẩm</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                
             </div>
             <div class="modal-footer">
                 <button type="button" id="deleteBtn" class="btn btn-danger" data-dismiss="modal">Xóa</button>

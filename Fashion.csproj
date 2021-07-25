@@ -185,6 +185,10 @@
     <Compile Include="Migrations\202107250741476_version_1.0.6.designer.cs">
       <DependentUpon>202107250741476_version_1.0.6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107251456069_version_1.0.7.cs" />
+    <Compile Include="Migrations\202107251456069_version_1.0.7.designer.cs">
+      <DependentUpon>202107251456069_version_1.0.7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Color.cs" />
@@ -6822,6 +6826,7 @@
     <Content Include="Areas\Admin\Views\SizeAdmin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\SizeAdmin\List.cshtml" />
     <Content Include="Areas\Admin\Views\SizeAdmin\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductOptionAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -6977,6 +6982,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107250741476_version_1.0.6.resx">
       <DependentUpon>202107250741476_version_1.0.6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107251456069_version_1.0.7.resx">
+      <DependentUpon>202107251456069_version_1.0.7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
