@@ -1,5 +1,4 @@
-﻿using Fashion.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -35,7 +34,7 @@ namespace Fashion.Models
         public string QrCode { get; set; }
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }
-        public EnumStatus Status { get; set; }
+        public bool Status { get; set; }
         [ForeignKey("CategoryId")]
         public virtual Category Category { set; get; }
         public virtual IEnumerable<ProductTag> ProductTags { set; get; }

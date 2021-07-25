@@ -59,5 +59,86 @@ namespace Fashion.Areas.Admin.Controllers
             var result = db.Products.OrderByDescending(x => x.ID).ToList();
             return View(result);
         }
+        [HttpGet]
+        public ActionResult Update(int Id)
+        {
+            var model = db.Products.Find(Id);
+            ViewBag.ListCategory = new SelectList(db.Categories.ToList(), "ID", "Name", 0);
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Update(Product product)
+        {
+            try
+            {
+                Product entity = db.Products.Find(product.ID);
+                entity.Name = product.Name;
+                entity.Alias = XString.ToAscii(product.Name);
+                entity.CategoryId = product.CategoryId;
+                entity.Image = product.Image;
+                entity.OriginalPrice = product.OriginalPrice;
+                entity.Price = product.Price;
+                entity.PromotionPrice = product.PromotionPrice;
+                entity.Description = product.Description;
+                entity.Content = product.Content;
+                entity.Status = product.Status;
+                db.SaveChanges();
+                Notification.set_flash("Cập nhật sản phẩm thành công!", "success");
+                return RedirectToAction("List");
+            }
+            catch
+            {
+                Notification.set_flash("Cập nhật sản phẩm thất bại!", "danger");
+                throw;
+            }
+        }
+        public ActionResult Delete(int Id)
+        {
+            try
+            {
+                var entity = db.Products.Find(Id);
+                foreach(var option in entity.ProductOptions.ToList())
+                {
+                    db.ProductOptions.Remove(option);
+                }
+                db.Products.Remove(entity);
+                db.SaveChanges();
+                Notification.set_flash("Xóa sản phẩm thành công!", "success");
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                Notification.set_flash("Xóa sản phẩm thất bại!", "danger");
+                throw;
+            }
+        }
+        public JsonResult ChangeShow(int id, bool status)
+        {
+            var model = db.Products.Where(x => x.ID == id).FirstOrDefault();
+            model.Status = status;
+            db.SaveChanges();
+            Notification.set_flash("Cập nhật thành công!", "success");
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult ChangeHot(int id, bool status)
+        {
+            var model = db.Products.Where(x => x.ID == id).FirstOrDefault();
+            model.HotFlag = status;
+            db.SaveChanges();
+            Notification.set_flash("Cập nhật thành công!", "success");
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult ChangePromotion(int id, bool status)
+        {
+            var model = db.Products.Where(x => x.ID == id).FirstOrDefault();
+            model.ActivePromotion = status;
+            db.SaveChanges();
+            Notification.set_flash("Cập nhật thành công!", "success");
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Detail(int id)
+        {
+            return View();
+        }
     }
 }

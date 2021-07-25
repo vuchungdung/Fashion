@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Fashion.Areas.Admin.Controllers
 {
-    public class ProductOptionController : Controller
+    public class ColorController : Controller
     {
         private FSDbContext db = new FSDbContext();
         public ActionResult Index()
@@ -21,50 +21,48 @@ namespace Fashion.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(ProductOption model)
+        public ActionResult Create(Color model)
         {
             try
             {
-                ProductOption entity = new ProductOption();
-                entity.ColorId = model.ColorId;
-                entity.SizeId = model.SizeId;
-                entity.Count = model.Count;
-                entity.ProductId = model.ProductId;
-                entity.CreatedDate = DateTime.Now;
-                db.ProductOptions.Add(entity);
+                Color entity = new Color();
+                entity.Name = model.Name;
+                db.Colors.Add(entity);
                 db.SaveChanges();
-                Notification.set_flash("Thêm thông tin sản phẩm thành công!", "success");
+                Notification.set_flash("Thêm màu thành công!", "success");
                 return RedirectToAction("List");
             }
             catch
             {
-                Notification.set_flash("Thêm thông tin sản phẩm thất bại!", "danger");
+                Notification.set_flash("Thêm màu thất bại!", "danger");
                 throw;
             }
+        }
+        public ActionResult List()
+        {
+            var result = db.Colors.OrderByDescending(x => x.ID).ToList();
+            return View(result);
         }
         [HttpGet]
         public ActionResult Update(int id)
         {
-            var entity = db.ProductOptions.Find(id);
+            var entity = db.Colors.Find(id);
             return View(entity);
         }
         [HttpPost]
-        public ActionResult Update(ProductOption ProductOption)
+        public ActionResult Update(Color Color)
         {
             try
             {
-                ProductOption entity = db.ProductOptions.Find(ProductOption.Id);
-                entity.ColorId = ProductOption.ColorId;
-                entity.SizeId = ProductOption.SizeId;
-                entity.ProductId = ProductOption.ProductId;
-                entity.Count = ProductOption.Count;
+                Color entity = db.Colors.Find(Color.ID);
+                entity.Name = Color.Name;
                 db.SaveChanges();
-                Notification.set_flash("Cập nhật thông tin sản phẩm thành công!", "success");
+                Notification.set_flash("Cập nhật màu thành công!", "success");
                 return RedirectToAction("List");
             }
             catch
             {
-                Notification.set_flash("Cập nhật thông tin sản phẩm thất bại!", "danger");
+                Notification.set_flash("Cập nhật màu thất bại!", "danger");
                 throw;
             }
         }
@@ -72,8 +70,14 @@ namespace Fashion.Areas.Admin.Controllers
         {
             try
             {
-                var model = db.ProductOptions.Where(x => x.Id == id).FirstOrDefault();
-                db.ProductOptions.Remove(model);
+                var products = db.ProductOptions.Where(x => x.ColorId == id).ToList();
+                if (products.Count() > 0)
+                {
+                    Notification.set_flash("Không được phép xóa!", "warning");
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                var model = db.Colors.Where(x => x.ID == id).FirstOrDefault();
+                db.Colors.Remove(model);
                 db.SaveChanges();
                 Notification.set_flash("Xóa thành công!", "success");
                 return Json(true, JsonRequestBehavior.AllowGet);

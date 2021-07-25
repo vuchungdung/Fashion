@@ -137,17 +137,18 @@
     <Compile Include="Areas\Admin\Controllers\AdminAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ColorController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiscountAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductOptionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SizeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Enums\EnumStatus.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,6 +180,10 @@
     <Compile Include="Migrations\202107250315107_version_1.0.5.cs" />
     <Compile Include="Migrations\202107250315107_version_1.0.5.designer.cs">
       <DependentUpon>202107250315107_version_1.0.5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107250741476_version_1.0.6.cs" />
+    <Compile Include="Migrations\202107250741476_version_1.0.6.designer.cs">
+      <DependentUpon>202107250741476_version_1.0.6.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -6805,6 +6810,8 @@
     <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\.bower.json" />
     <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\bower.json" />
     <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\Readme.md" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\Detail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -6918,10 +6925,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\AuthAdmin\" />
+    <Folder Include="Areas\Admin\Views\Color\" />
     <Folder Include="Areas\Admin\Views\CustomerAdmin\" />
     <Folder Include="Areas\Admin\Views\DiscountAdmin\" />
     <Folder Include="Areas\Admin\Views\OrderAdmin\" />
     <Folder Include="Areas\Admin\Views\ProductOption\" />
+    <Folder Include="Areas\Admin\Views\Sỉz\" />
     <Folder Include="Areas\Admin\Views\UserAdmin\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
@@ -6959,6 +6968,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107250315107_version_1.0.5.resx">
       <DependentUpon>202107250315107_version_1.0.5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107250741476_version_1.0.6.resx">
+      <DependentUpon>202107250741476_version_1.0.6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
