@@ -26,6 +26,7 @@ namespace Fashion.Models
         public DbSet<ProductOption> ProductOptions { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Size> Sizes { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public static FSDbContext Create()
         {
             return new FSDbContext();

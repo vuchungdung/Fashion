@@ -74,11 +74,11 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-6">
-                    @using (Html.BeginForm("Create", "ProductOptionAdmin", FormMethod.Post))
+                    @using (Html.BeginForm("Create", "ProductOptionAdmin", FormMethod.Post, new { @id = "formInfo" }))
                     {
                         <div class="form-group">
                             <label>Màu sắc:</label>
-                            @Html.DropDownListFor(model => model.ColorId,(SelectList)ViewBag.ListColors,"[CHọn màu sắc]", htmlAttributes: new { @class = "form-control", @required = "true", @placeholder = "Nhập code" })
+                            @Html.DropDownListFor(model => model.ColorId, (SelectList)ViewBag.ListColors, "[CHọn màu sắc]", htmlAttributes: new { @class = "form-control", @required = "true", @placeholder = "Nhập code" })
                         </div>
                         <div class="form-group">
                             <label>Kích cỡ:</label>
@@ -89,9 +89,10 @@
                             @Html.TextBoxFor(model => model.Count, htmlAttributes: new { @class = "form-control", @required = "true", @placeholder = "Nhập số lượng sản phẩm" })
                         </div>
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Thêm mới</button>
+                            <button type="submit" class="btn btn-primary">Lưu thông tin</button>
                         </div>
-                        <input name="ProductId" value="@product.ID" style="display:none"/>
+                        <input name="ProductId" value="@product.ID" style="display:none" />
+                        <input name="Id" id="Id" style="display:none" />
                     }
                 </div>
                 <div class="col-md-6">
@@ -114,8 +115,8 @@
                                     <td>@item.Color.Name</td>
                                     <td>@item.Count</td>
                                     <td class="text-center">
-                                        <a onclick="deleteConfirm(this)" id="@item.Id" data-toggle="modal" data-target="#myModal"><i style="color:red" class="fa fa-fw fa-trash"></i></a>
-                                        <a href="/admin/productoptionadmin/index/@product.ID"><i style="color:green" class="fa fa-fw fa-pencil"></i></a>
+                                        <a onclick="deleteConfirm(this)" style="cursor:pointer" id="@item.Id" data-toggle="modal" data-target="#myModal"><i style="color:red" class="fa fa-fw fa-trash"></i></a>
+                                        <a onclick="loadUpdate(@item.Id)" style="cursor:pointer"><i style="color:green" class="fa fa-fw fa-pencil"></i></a>
                                     </td>
                                 </tr>
                             }
@@ -173,4 +174,20 @@
             }
         });
     })
+    function loadUpdate(id) {
+        $.ajax({
+            type: "get",
+            url: '/Admin/ProductOptionAdmin/update/' + id,
+            contentType: "application/json; charset=utf-8",
+            data: null,
+            dataType: "json",
+            success: function (res) {
+                $("#ColorId").val(res.ColorId);
+                $("#SizeId").val(res.SizeId);
+                $("#Count").val(res.Count);
+                $("#Id").val(res.Id);
+                $("#formInfo").attr("action","/Admin/ProductOptionAdmin/Update")
+            }
+        });
+    }
 </script>

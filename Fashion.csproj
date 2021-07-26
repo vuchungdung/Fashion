@@ -189,9 +189,14 @@
     <Compile Include="Migrations\202107251456069_version_1.0.7.designer.cs">
       <DependentUpon>202107251456069_version_1.0.7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107260914186_version_1.0.8.cs" />
+    <Compile Include="Migrations\202107260914186_version_1.0.8.designer.cs">
+      <DependentUpon>202107260914186_version_1.0.8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Color.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\FSDbContext.cs" />
@@ -6985,6 +6990,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107251456069_version_1.0.7.resx">
       <DependentUpon>202107251456069_version_1.0.7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107260914186_version_1.0.8.resx">
+      <DependentUpon>202107260914186_version_1.0.8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

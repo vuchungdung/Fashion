@@ -16,7 +16,7 @@ namespace Fashion.Areas.Admin.Controllers
             ViewBag.ListColors = new SelectList(db.Colors.ToList(), "ID", "Name", 0);
             ViewBag.ListSizes = new SelectList(db.Sizes.ToList(), "ID", "Name", 0);
             ViewBag.Product = db.Products.Find(id);
-            ViewBag.Option = db.ProductOptions.Where(x=>x.ProductId == id).ToList();
+            ViewBag.Option = db.ProductOptions.Where(x=>x.ProductId == id).OrderByDescending(x=>x.Id).ToList();
             return View();
         }
         [HttpGet]
@@ -51,7 +51,7 @@ namespace Fashion.Areas.Admin.Controllers
         public ActionResult Update(int id)
         {
             var entity = db.ProductOptions.Find(id);
-            return View(entity);
+            return Json(entity, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult Update(ProductOption ProductOption)
@@ -64,8 +64,9 @@ namespace Fashion.Areas.Admin.Controllers
                 entity.ProductId = ProductOption.ProductId;
                 entity.Count = ProductOption.Count;
                 db.SaveChanges();
+                int id = ProductOption.ProductId;
                 Notification.set_flash("Cập nhật thông tin sản phẩm thành công!", "success");
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id });
             }
             catch
             {

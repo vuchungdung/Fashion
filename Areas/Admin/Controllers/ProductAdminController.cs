@@ -37,10 +37,7 @@ namespace Fashion.Areas.Admin.Controllers
                 entity.PromotionPrice = product.PromotionPrice;
                 entity.Description = product.Description;
                 entity.Content = product.Content;
-                entity.ActivePromotion = product.ActivePromotion;
-                entity.HotFlag = product.HotFlag;
                 entity.ViewCount = 0;
-                entity.QrCode = product.QrCode;
                 entity.Status = product.Status;
                 entity.CreatedDate = DateTime.Now;
                 db.Products.Add(entity);
@@ -67,6 +64,7 @@ namespace Fashion.Areas.Admin.Controllers
             return View(model);
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Update(Product product)
         {
             try
@@ -97,7 +95,8 @@ namespace Fashion.Areas.Admin.Controllers
             try
             {
                 var entity = db.Products.Find(Id);
-                foreach(var option in entity.ProductOptions.ToList())
+                var listOption = db.ProductOptions.Where(x => x.ProductId == entity.ID).ToList();
+                foreach(var option in listOption)
                 {
                     db.ProductOptions.Remove(option);
                 }
