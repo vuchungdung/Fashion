@@ -26,6 +26,15 @@ namespace Fashion.Areas.Admin.Controllers
             try
             {
                 User entity = new User();
+                entity.Name = model.Name;
+                entity.Username = model.Username;
+                entity.Password = XString.ToMD5(model.Password);
+                entity.Email = model.Email;
+                entity.Phone = model.Phone;
+                entity.Status = model.Status;
+                entity.Image = model.Image;
+                entity.CreatedDate = DateTime.Now;
+                db.Users.Add(entity);
                 db.SaveChanges();
                 Notification.set_flash("Thêm người dùng thành công!", "success");
                 return RedirectToAction("List");
@@ -48,12 +57,19 @@ namespace Fashion.Areas.Admin.Controllers
             return View(entity);
         }
         [HttpPost]
-        public ActionResult Update(User User)
+        public ActionResult Update(User model)
         {
             try
             {
-                User entity = db.Users.Find(User.Id);
-                
+                User entity = db.Users.Find(model.Id);
+                entity.Name = model.Name;
+                entity.Username = model.Username;
+                entity.Password = XString.ToMD5(model.Password);
+                entity.Email = model.Email;
+                entity.Phone = model.Phone;
+                entity.Status = model.Status;
+                entity.Image = model.Image;
+                entity.CreatedDate = DateTime.Now;
                 db.SaveChanges();
                 Notification.set_flash("Cập nhật người dùng thành công!", "success");
                 return RedirectToAction("List");
@@ -79,6 +95,14 @@ namespace Fashion.Areas.Admin.Controllers
                 Notification.set_flash("Xóa người dùng thất bại!", "danger");
                 throw;
             }
+        }
+        public JsonResult ChangeShow(int id, bool status)
+        {
+            var model = db.Users.Where(x => x.Id == id).FirstOrDefault();
+            model.Status = status;
+            db.SaveChanges();
+            Notification.set_flash("Cập nhật thành công!", "success");
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }

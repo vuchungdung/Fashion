@@ -1,5 +1,7 @@
 ﻿namespace Fashion.Migrations
 {
+    using Fashion.Library;
+    using Fashion.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,10 +16,18 @@
 
         protected override void Seed(Fashion.Models.FSDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+            context.Users.AddOrUpdate(e => e.Id, new User
+            {
+                Id = 1,
+                Username = "admin",
+                Email = "admin@gmail.com",
+                Name = "Quản trị A",
+                Status = true,
+                CreatedDate = DateTime.Parse("2019-09-09"),
+                Image = "default-avatar.jpg",
+                Password = XString.ToMD5("admin123"),
+                Phone = "0987777777"
+            });
         }
     }
 }

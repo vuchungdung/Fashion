@@ -149,6 +149,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Dtos\UserSession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +194,10 @@
     <Compile Include="Migrations\202107260914186_version_1.0.8.designer.cs">
       <DependentUpon>202107260914186_version_1.0.8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107270229345_version_1.0.9.cs" />
+    <Compile Include="Migrations\202107270229345_version_1.0.9.designer.cs">
+      <DependentUpon>202107270229345_version_1.0.9.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Color.cs" />
@@ -209,6 +214,7 @@
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -6832,6 +6838,8 @@
     <Content Include="Areas\Admin\Views\SizeAdmin\List.cshtml" />
     <Content Include="Areas\Admin\Views\SizeAdmin\Update.cshtml" />
     <Content Include="Areas\Admin\Views\ProductOptionAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Login.cshtml" />
+    <Content Include="Areas\Admin\Views\AuthAdmin\Login.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -6944,7 +6952,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\AuthAdmin\" />
     <Folder Include="Areas\Admin\Views\CustomerAdmin\" />
     <Folder Include="Areas\Admin\Views\OrderAdmin\" />
     <Folder Include="Areas\Admin\Views\UserAdmin\" />
@@ -6993,6 +7000,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107260914186_version_1.0.8.resx">
       <DependentUpon>202107260914186_version_1.0.8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270229345_version_1.0.9.resx">
+      <DependentUpon>202107270229345_version_1.0.9.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
