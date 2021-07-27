@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Fashion.Areas.Admin.Controllers
 {
+    [Authorize]
     public class ProductAdminController : Controller
     {
         private FSDbContext db = new FSDbContext();

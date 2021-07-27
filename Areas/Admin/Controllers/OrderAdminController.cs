@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Fashion.Areas.Admin.Controllers
 {
+    [Authorize]
     public class OrderAdminController : Controller
     {
         public ActionResult Index()

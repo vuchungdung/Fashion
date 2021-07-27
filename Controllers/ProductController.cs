@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fashion.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,14 +9,21 @@ namespace Fashion.Controllers
 {
     public class ProductController : Controller
     {
-        // GET: Product
+        public FSDbContext db = new FSDbContext();
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult List()
+        public ActionResult List(int? id)
         {
-            return View();
+            var list = db.Products.ToList();
+            if(id != null)
+            {
+                list = list.Where(x => x.CategoryId == id).ToList();
+            }
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Products = list.Where(x => x.ActivePromotion == true).ToList();
+            return View(list);
         }
     }
 }
