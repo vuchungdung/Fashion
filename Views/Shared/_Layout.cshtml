@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="w1">
-            @Html.Partial("_Header")
+            @{Html.RenderAction("_Header", "Home"); }
             @Html.Partial("_SideMenu")
             @Html.Partial("_Search")
             @RenderBody()

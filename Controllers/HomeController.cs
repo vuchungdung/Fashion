@@ -1,4 +1,5 @@
 ﻿using Fashion.Models;
+using Fashion.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,20 @@ namespace Fashion.Controllers
         private FSDbContext db = new FSDbContext();
         public ActionResult Index()
         {
-            return View();
+            var screen = new ProductViewModel();
+            screen.ProductHots = db.Products.Where(x => x.Status == true && x.HotFlag == true).OrderByDescending(x => x.ID).ToList();
+            screen.ProductNews = db.Products.Where(x => x.Status == true).OrderByDescending(x => x.ID).ToList();
+            screen.ProductPromotions = db.Products.Where(x => x.Status == true && x.ActivePromotion == true).OrderByDescending(x => x.ID).ToList();
+            return View(screen);
         }
-
+        public ActionResult _Header()
+        {
+            var list = db.Categories.ToList();
+            return PartialView(list);
+        }
+        public ActionResult _Cart()
+        {
+            return PartialView();
+        }
     }
 }
