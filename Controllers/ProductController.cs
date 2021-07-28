@@ -10,9 +10,11 @@ namespace Fashion.Controllers
     public class ProductController : Controller
     {
         public FSDbContext db = new FSDbContext();
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            var product = db.Products.Where(x => x.ID == id).FirstOrDefault();
+            product.ProductOptions = db.ProductOptions.Where(x => x.ProductId == id).ToList();
+            return View(product);
         }
         public ActionResult List(int? id)
         {

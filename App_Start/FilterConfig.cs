@@ -27,8 +27,7 @@ namespace Fashion
                 if (Exist)
                 {
                     var user = db.Users.Where(e => e.Username == HttpContext.Current.User.Identity.Name).First();
-                    HttpContext.Current.Session["UserID"] = user.Id;
-                    HttpContext.Current.Session["Name"] = user.Name;
+                    HttpContext.Current.Session["USER"] = user;
                 }
             }
             base.OnActionExecuting(filterContext);
