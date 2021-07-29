@@ -17,6 +17,8 @@ namespace Fashion.Controllers
             screen.ProductHots = db.Products.Where(x => x.Status == true && x.HotFlag == true).OrderByDescending(x => x.ID).ToList();
             screen.ProductNews = db.Products.Where(x => x.Status == true).OrderByDescending(x => x.ID).ToList();
             screen.ProductPromotions = db.Products.Where(x => x.Status == true && x.ActivePromotion == true).OrderByDescending(x => x.ID).ToList();
+            screen.ProductPriceTop = db.Products.Where(x => x.Status == true).OrderByDescending(x => x.Price).ToList();
+            screen.ProductPriceBot = db.Products.Where(x => x.Status == true).OrderBy(x => x.Price).ToList();
             return View(screen);
         }
         public ActionResult _Header()

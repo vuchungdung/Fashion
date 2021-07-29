@@ -218,206 +218,72 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-3 mt-paddingbottomsm wow fadeInLeft" data-wow-delay="0.4s">
-                    <h3 class="heading">Hot Sale</h3>
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img14.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Egon Wooden Chair</a></strong>
-                                <ul class="mt-stars">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                </ul>
+                    <h3 class="heading">Giá cao nhất</h3>
+                    @foreach (var item in Model.ProductPriceTop.Take(4))
+                    {
+                        <div class="mt-product4 mt-paddingbottom20">
+                            <div class="img">
+                                <a href="/product/index/@item.ID"><img alt="image description" src="@item.Image"></a>
                             </div>
-                            <del class="off">$75,00</del>
-                            <span class="price">$55,00</span>
-                        </div>
-                    </div><!-- mt product4 end here -->
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img15.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Oyo Cantilever Chair</a></strong>
+                            <div class="text">
+                                <div class="frame">
+                                    <strong><a href="/product/index/@item.ID">@item.Name</a></strong>
+                                </div>
+                                <span class="price">@item.Price VNĐ</span>
                             </div>
-                            <del class="off">$75,00</del>
-                            <span class="price">$55,00</span>
                         </div>
-                    </div><!-- mt product4 end here -->
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img16.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Kurve Chair</a></strong>
-                                <ul class="mt-stars">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                </ul>
-                            </div>
-                            <del class="off">$75,00</del>
-                            <span class="price">$55,00</span>
-                        </div>
-                    </div><!-- mt product4 end here -->
+                    }
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 mt-paddingbottomsm wow fadeInLeft" data-wow-delay="0.4s">
-                    <h3 class="heading">Featured Products</h3>
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img17.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Bombi Chair</a></strong>
+                    <h3 class="heading">Giá thấp nhất</h3>
+                    @foreach (var item in Model.ProductPriceBot.Take(4))
+                    {
+                        <div class="mt-product4 mt-paddingbottom20">
+                            <div class="img">
+                                <a href="/product/index/@item.ID"><img alt="image description" src="@item.Image"></a>
                             </div>
-                            <del class="off">$75,00</del>
-                            <span class="price">$33,00</span>
-                        </div>
-                    </div><!-- mt product4 end here -->
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img18.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Oyo Cantilever Chair</a></strong>
+                            <div class="text">
+                                <div class="frame">
+                                    <strong><a href="/product/index/@item.ID">@item.Name</a></strong>
+                                </div>
+                                <span class="price">@item.Price VNĐ</span>
                             </div>
-                            <span class="price">$55,00</span>
                         </div>
-                    </div><!-- mt product4 end here -->
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img19.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Puff Chair</a></strong>
-                            </div>
-                            <del class="off">$75,00</del>
-                            <span class="price">$55,00</span>
-                        </div>
-                    </div><!-- mt product4 end here -->
+                    }
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 mt-paddingbottomxs wow fadeInRight" data-wow-delay="0.4s">
-                    <h3 class="heading">Sale Products</h3>
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img20.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Marvelous Wooden Chair</a></strong>
+                    <h3 class="heading">Mới ra</h3>
+                    @foreach (var item in Model.ProductNews.Take(4))
+                    {
+                        <div class="mt-product4 mt-paddingbottom20">
+                            <div class="img">
+                                <a href="/product/index/@item.ID"><img alt="image description" src="@item.Image"></a>
                             </div>
-                            <del class="off">$75,00</del>
-                            <span class="price">$55,00</span>
-                        </div>
-                    </div><!-- mt product4 end here -->
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img21.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Oyo Cantilever Chair</a></strong>
-                                <ul class="mt-stars">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                </ul>
+                            <div class="text">
+                                <div class="frame">
+                                    <strong><a href="/product/index/@item.ID">@item.Name</a></strong>
+                                </div>
+                                <span class="price">@item.Price VNĐ</span>
                             </div>
-                            <span class="price">$55,00</span>
                         </div>
-                    </div><!-- mt product4 end here -->
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img16.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Kurve Chair</a></strong>
-                            </div>
-                            <del class="off">$75,00</del>
-                            <span class="price">$55,00</span>
-                        </div>
-                    </div><!-- mt product4 end here -->
+                    }
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 wow fadeInRight" data-wow-delay="0.4s">
-                    <h3 class="heading">Top Rated Products</h3>
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img14.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Egon Wooden Chair</a></strong>
-                                <ul class="mt-stars">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                </ul>
+                    <h3 class="heading">Nổi bật</h3>
+                    @foreach (var item in Model.ProductHots.Take(4))
+                    {
+                        <div class="mt-product4 mt-paddingbottom20">
+                            <div class="img">
+                                <a href="/product/index/@item.ID"><img alt="image description" src="@item.Image"></a>
                             </div>
-                            <del class="off">$75,00</del>
-                            <span class="price">$55,00</span>
-                        </div>
-                    </div><!-- mt product4 end here -->
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img15.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Oyo Cantilever Chair</a></strong>
-                                <ul class="mt-stars">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                </ul>
+                            <div class="text">
+                                <div class="frame">
+                                    <strong><a href="/product/index/@item.ID">@item.Name</a></strong>
+                                </div>
+                                <span class="price">@item.Price VNĐ</span>
                             </div>
-                            <del class="off">$75,00</del>
-                            <span class="price">$55,00</span>
                         </div>
-                    </div><!-- mt product4 end here -->
-                    <!-- mt product4 start here -->
-                    <div class="mt-product4 mt-paddingbottom20">
-                        <div class="img">
-                            <a href="/product/index"><img alt="image description" src="~/Assets/images/products/img16.jpg"></a>
-                        </div>
-                        <div class="text">
-                            <div class="frame">
-                                <strong><a href="/product/index">Kurve Chair</a></strong>
-                                <ul class="mt-stars">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                </ul>
-                            </div>
-                            <del class="off">$75,00</del>
-                            <span class="price">$55,00</span>
-                        </div>
-                    </div><!-- mt product4 end here -->
+                    }
                 </div>
             </div>
         </div>

@@ -1,9 +1,9 @@
-﻿@model Fashion.Models.Product 
+﻿@model Fashion.Models.Product
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Assets/js/jquery.js"></script>
 <main id="mt-main">
     <section class="mt-product-detial wow fadeInUp" data-wow-delay="0.4s">
         <div class="container">
@@ -28,22 +28,28 @@
                             </div>
                             <div class="form-group">
                                 <label>Chọn kích cỡ sản phẩm</label>
-                                <select class="form-control">
-                                    @foreach (var item in Model.ProductOptions)
+                                <select onclick="changeOption()" id="ocolor" class="form-control">
+                                    <option value="0">[Kích cỡ]</option>
+                                    @foreach (var item in (List<Fashion.Models.Size>)ViewBag.ListSizes)
                                     {
-                                        <option value="@item.SizeId">@item.SizeId</option>
+                                        <option value="@item.ID">@item.Name</option>
                                     }
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Chọn màu sắc sản phẩm</label>
-                                <select class="form-control">
-                                    @foreach (var item in Model.ProductOptions)
+                                <select onclick="changeOption()" id="osize" class="form-control">
+                                    <option value="0">[Màu sắc]</option>
+                                    @foreach (var item in (List<Fashion.Models.Color>)ViewBag.ListColors)
                                     {
-                                        <option value="@item.ColorId">@item.ColorId</option>
+                                        <option value="@item.ID">@item.Name</option>
                                     }
                                 </select>
                             </div>
+                        </div>
+                        <div class="text-holder" style="margin:0px;margin-bottom:6px">
+                            Số lượng :
+                            <span class="price" id="totalOption"></span>
                         </div>
                         <div class="text-holder" style="margin:0px">
                             Đơn giá :
@@ -124,109 +130,36 @@
                     <h2>SẢN PHẨM LIÊN QUAN</h2>
                     <div class="row">
                         <div class="col-xs-12">
-                            <!-- mt product1 center start here -->
-                            <div class="mt-product1 mt-paddingbottom20">
-                                <div class="box">
-                                    <div class="b1">
-                                        <div class="b2">
-                                            <a href="/product/index"><img src="~/Assets/images/products/img01.jpg" alt="image description"></a>
-                                            <ul class="links">
-                                                <li><a href="#"><i class="icon-handbag"></i><span>Add to Cart</span></a></li>
-                                            </ul>
+
+                            @foreach (var item in (List<Fashion.Models.Product>)ViewBag.ListProducts)
+                            {
+                                <div class="mt-product1 mt-paddingbottom20">
+                                    <div class="box">
+                                        <div class="b1">
+                                            <div class="b2">
+                                                <a href="/product/index/@item.ID"><img src="@item.Image" alt="image description"></a>
+                                                <ul class="links">
+                                                    <li><a href="#"><i class="icon-handbag"></i><span>Thêm giỏ</span></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="txt">
-                                    <strong class="title"><a href="/product/index">Puff Chair</a></strong>
-                                    <span class="price"><i class="fa fa-eur"></i> <span>287,00</span></span>
-                                </div>
-                            </div><!-- mt product1 center end here -->
-                            <!-- mt product1 center start here -->
-                            <div class="mt-product1 mt-paddingbottom20">
-                                <div class="box">
-                                    <div class="b1">
-                                        <div class="b2">
-                                            <a href="/product/index"><img src="~/Assets/images/products/img02.jpg" alt="image description"></a>
-                                            <ul class="links">
-                                                <li><a href="#"><i class="icon-handbag"></i><span>Add to Cart</span></a></li>
-                                                <li><a href="#"><i class="icomoon icon-heart-empty"></i></a></li>
-                                                <li><a href="#"><i class="icomoon icon-exchange"></i></a></li>
-                                            </ul>
-                                        </div>
+                                    <div class="txt">
+                                        <strong class="title"><a href="/product/index/@item.ID">@item.Name</a></strong>
+                                        @if (item.ActivePromotion == true)
+                                        {
+                                            <div style="display:flex;justify-content:space-around">
+                                                <del class="off">@item.Price VNĐ</del>
+                                                <span class="price">@item.PromotionPrice VNĐ</span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <span class="price">@item.Price VNĐ</span>
+                                        }
                                     </div>
                                 </div>
-                                <div class="txt">
-                                    <strong class="title"><a href="/product/index">Bombi Chair</a></strong>
-                                    <span class="price"><i class="fa fa-eur"></i> <span>399,00</span></span>
-                                </div>
-                            </div><!-- mt product1 center end here -->
-                            <!-- mt product1 center start here -->
-                            <div class="mt-product1 mt-paddingbottom20">
-                                <div class="box">
-                                    <div class="b1">
-                                        <div class="b2">
-                                            <a href="/product/index"><img src="~/Assets/images/products/img03.jpg" alt="image description"></a>
-                                            <ul class="links">
-                                                <li><a href="#"><i class="icon-handbag"></i><span>Add to Cart</span></a></li>
-                                                <li><a href="#"><i class="icomoon icon-heart-empty"></i></a></li>
-                                                <li><a href="#"><i class="icomoon icon-exchange"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="txt">
-                                    <strong class="title"><a href="/product/index">Wood Chair</a></strong>
-                                    <span class="price"><i class="fa fa-eur"></i> <span>198,00</span></span>
-                                </div>
-                            </div><!-- mt product1 center end here -->
-                            <!-- mt product1 center start here -->
-                            <div class="mt-product1 mt-paddingbottom20">
-                                <div class="box">
-                                    <div class="b1">
-                                        <div class="b2">
-                                            <a href="/product/index"><img src="~/Assets/images/products/img04.jpg" alt="image description"></a>
-                                            <span class="caption">
-                                                <span class="off">15% Off</span>
-                                                <span class="new">NEW</span>
-                                            </span>
-                                            <ul class="mt-stars">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                            <ul class="links">
-                                                <li><a href="#"><i class="icon-handbag"></i><span>Add to Cart</span></a></li>
-                                                <li><a href="#"><i class="icomoon icon-heart-empty"></i></a></li>
-                                                <li><a href="#"><i class="icomoon icon-exchange"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="txt">
-                                    <strong class="title"><a href="/product/index">Bombi Chair</a></strong>
-                                    <span class="price"><i class="fa fa-eur"></i> <span>200,00</span></span>
-                                </div>
-                            </div><!-- mt product1 center end here -->
-                            <!-- mt product1 center start here -->
-                            <div class="mt-product1 mt-paddingbottom20">
-                                <div class="box">
-                                    <div class="b1">
-                                        <div class="b2">
-                                            <a href="/product/index"><img src="~/Assets/images/products/img05.jpg" alt="image description"></a>
-                                            <ul class="links">
-                                                <li><a href="#"><i class="icon-handbag"></i><span>Add to Cart</span></a></li>
-                                                <li><a href="#"><i class="icomoon icon-heart-empty"></i></a></li>
-                                                <li><a href="#"><i class="icomoon icon-exchange"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="txt">
-                                    <strong class="title"><a href="/product/index">Bombi Chair</a></strong>
-                                    <span class="price"><i class="fa fa-eur"></i> <span>200,00</span></span>
-                                </div>
-                            </div><!-- mt product1 center end here -->
+                            }
                         </div>
                     </div>
                 </div>
@@ -234,3 +167,23 @@
         </div><!-- related products end here -->
     </div>
 </main>
+<script>
+    function changeOption() {
+        let _pId = @Model.ID;
+        let _cId = $("#ocolor").val();
+        let _sId = $("#osize").val();
+        $.ajax({
+            type: "POST",
+            url: '/product/count',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ pId: _pId, cId: _cId, sId: _sId }),
+            dataType: "json",
+            success: function (res) {
+                $("#totalOption").html("Có "+res+" sản phẩm");
+            }
+        })
+    }
+    $(function () {
+        changeOption();
+    });
+</script>

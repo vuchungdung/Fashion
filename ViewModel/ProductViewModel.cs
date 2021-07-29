@@ -11,6 +11,8 @@ namespace Fashion.ViewModel
         public List<Product> ProductHots { get; set; } = new List<Product>();
         public List<Product> ProductNews { get; set; } = new List<Product>();
         public List<Product> ProductPromotions { get; set; } = new List<Product>();
+        public List<Product> ProductPriceTop { get; set; } = new List<Product>();
+        public List<Product> ProductPriceBot { get; set; } = new List<Product>();
 
     }
 }

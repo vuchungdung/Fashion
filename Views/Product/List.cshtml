@@ -4,7 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{ 
+    Fashion.Models.FSDbContext db = new Fashion.Models.FSDbContext();
     var categories = (List<Fashion.Models.Category>)ViewBag.Categories;
+    foreach(var item in categories)
+    {
+        item.Products = db.Products.Where(x => x.CategoryId == item.ID).ToList();
+    }
     var products = (List<Fashion.Models.Product>)ViewBag.Products;
 }
 <main id="mt-main">
@@ -39,7 +44,7 @@
                             <li>
                                 <a href="/Product/List/@item.ID">
                                     <span>@item.Name</span>
-                                    <span class="num">20</span>
+                                    <span class="num">@item.Products.Count()</span>
                                 </a>
                             </li>
                         }
