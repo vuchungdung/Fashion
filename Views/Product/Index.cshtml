@@ -68,10 +68,14 @@
                                 <h5>(Quét mã QR Code này đễ dễ dàng hiển thị thông tin sản phẩm bằng điện thoại)</h5>
                             </div>
                         </div>
-                        <form action="#" class="product-form">
+                        <div class="text-holder" style="margin:0px;margin-bottom:6px">
+                            Số lượng muốn mua:
+                            <input type="number" class="form-control" value="1" id="pty_p" placeholder="Nhập số lượng" required />
+                        </div>
+                        <form class="product-form">
                             <fieldset>
                                 <div class="row-val">
-                                    <button type="submit">THÊM VÀO GIỎ</button>
+                                    <button type="button" onclick="AddCart(@Model.ID,0)">THÊM VÀO GIỎ</button>
                                 </div>
                             </fieldset>
                         </form>

@@ -1,4 +1,4 @@
-﻿
+﻿<script src="~/Assets/js/jquery.js"></script>
 <footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s">
     <!-- Footer Holder of the Page -->
     <div class="footer-holder dark">
@@ -89,3 +89,35 @@
     </div>
     <!-- Footer Area of the Page end -->
 </footer>
+<script>
+    function AddCart(pId, pCount) {
+        pCount = $("#pty_p").val();
+        pSize = $("#osize").val();
+        pColor = $("#ocolor").val();
+
+        console.log(pCount);
+        console.log(pSize);
+        console.log(pColor);
+
+        if (pCount < 1) {
+            alert("Số lượng mua không hợp lệ!");
+        }
+        $.ajax({
+            url: "/product/addcart",
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ pid: pId, qty: pCount, cId: pColor, sId: pSize }),
+            dataType: "json",
+            success: function (res) {
+                if (res.result == 0) {
+                    alert("Thêm giỏ hàng thất bại!");
+                }
+                else {
+                    $("#num").html(res.count);
+                    alert("Thêm giỏ hàng thành công!");
+
+                }
+            }
+        })
+    }
+</script>

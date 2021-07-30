@@ -1,4 +1,5 @@
-﻿using Fashion.Models;
+﻿using Fashion.Library;
+using Fashion.Models;
 using Fashion.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,120 @@ namespace Fashion.Controllers
                 total = total + item.Count;
             }
             return Json(total, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult AddCart(int pid, int qty, int cId, int sId)
+        {
+            var p = db.Products.Where(m => m.Status == true && m.ID == pid).First();
+            var op = db.ProductOptions.Where(m => m.ColorId == cId && m.SizeId == sId && m.ProductId == pid).FirstOrDefault();
+            var cart = Session["Cart"];
+            if (cart == null)
+            {
+                var item = new CartViewModel();
+                item.ProductID = p.ID;
+                item.Name = p.Name;
+                item.Image = p.Image;
+                item.Quantity = qty;
+                item.Price = p.Price;
+                item.OptionId = op.Id;
+                var list = new List<CartViewModel>();
+                list.Add(item);
+                Session["Cart"] = list;
+                return Json(new { result = 1, count = list.Count() });
+            }
+            else
+            {
+                var list = (List<CartViewModel>)cart;
+
+                if (list.Exists(m => m.ProductID == pid))
+                {
+                    foreach (var item in list)
+                    {
+                        if (item.ProductID == pid)
+                            item.Quantity += qty;
+                        return Json(new { result = 2, count = list.Count() });
+                    }
+                }
+                else
+                {
+                    var item = new CartViewModel();
+                    item.ProductID = p.ID;
+                    item.Name = p.Name;
+                    item.Image = p.Image;
+                    item.Quantity = qty;
+                    item.Price = p.Price;
+                    item.OptionId = op.Id;
+                    list.Add(item);
+                    return Json(new { result = 1, count = list.Count() });
+                }
+            }
+            return Json(new { result = 0});
+        }
+        public ActionResult RemoveAll()
+        {
+            Session.Remove("Cart");
+            Notification.set_flash("Đã xóa toàn bộ sản phẩm trong giỏ hàng!", "success");
+            return Redirect("~/gio-hang");
+        }
+        public ActionResult Checkout()
+        {
+            if (Session["User_Name"] != null && Session["Cart"] != null)
+            {
+                int user_id = Convert.ToInt32(Session["User_ID"]);
+                ViewBag.Info = db.Users.Where(m => m.Id == user_id).First();
+            }
+            else
+                return RedirectToAction("Index", "Cart");
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult Payment(String Address, String FullName, String Phone, String Email)
+        {
+            var order = new Order();
+            int user_id = Convert.ToInt32(Session["User_ID"]);
+            order.Code = DateTime.Now.ToString("yyyyMMddhhMMss"); // yyyy-MM-dd hh:MM:ss
+            order.Status = 1;
+            db.Orders.Add(order);
+            db.SaveChanges();
+
+            var OrderID = order.ID;
+
+            foreach (var c in (List<CartViewModel>)Session["Cart"])
+            {
+                var orderdetails = new OrderDetail();
+            }
+            db.SaveChanges();
+
+            Session.Remove("Cart");
+            Notification.set_flash("Bạn đã đặt hàng thành công!", "success");
+            return Json(true);
+
+        }
+        public JsonResult Update(int pid, String option)
+        {
+            var sCart = (List<CartViewModel>)Session["Cart"];
+            CartViewModel c = sCart.First(m => m.ProductID == pid);
+            if (c != null)
+            {
+                switch (option)
+                {
+                    case "add":
+                        c.Quantity++;
+                        return Json(1);
+                    case "minus":
+                        c.Quantity--;
+                        return Json(2);
+                    case "remove":
+                        sCart.Remove(c);
+                        if (sCart.Count() == 0)
+                            Session.Remove("Cart");
+                        return Json(3);
+                    default:
+                        break;
+                }
+            }
+            return Json(null);
         }
     }
 }
