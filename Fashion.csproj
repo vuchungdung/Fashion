@@ -152,6 +152,7 @@
     <Compile Include="Areas\Admin\Controllers\SizeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -220,6 +221,8 @@
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CartViewModel.cs" />
+    <Compile Include="ViewModel\CommentViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\OptionViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
@@ -6834,7 +6837,6 @@
     <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\bower.json" />
     <Content Include="Areas\Admin\Assets\bower_components\datatables.net-bs\Readme.md" />
     <Content Include="Areas\Admin\Views\ProductAdmin\Update.cshtml" />
-    <Content Include="Areas\Admin\Views\ProductAdmin\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\CategoryAdmin\Update.cshtml" />
     <Content Include="Areas\Admin\Views\DiscountAdmin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\DiscountAdmin\List.cshtml" />
@@ -6950,7 +6952,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
-    <Content Include="Views\Shared\_SideMenu.cshtml" />
     <Content Include="Views\Shared\_Search.cshtml" />
     <Content Include="Views\Shared\_Slide.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
@@ -6966,6 +6967,7 @@
     <Folder Include="Areas\Admin\Views\CustomerAdmin\" />
     <Folder Include="Areas\Admin\Views\OrderAdmin\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

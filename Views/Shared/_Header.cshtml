@@ -18,13 +18,18 @@
                         </li>
                         <li><a href="#" class="icon-magnifier"></a></li>
                         @{Html.RenderAction("_Cart", "Home");}
-                        <li>
-                            <a href="#" class="bar-opener side-opener">
-                                <span class="bar"></span>
-                                <span class="bar small"></span>
-                                <span class="bar"></span>
-                            </a>
-                        </li>
+                        @{
+                            if ((Fashion.Models.Customer)Session["CUS"] == null)
+                            {
+                                 <li>
+                                     <a href="#" class="bar-opener side-opener">
+                                         <span class="bar"></span>
+                                         <span class="bar small"></span>
+                                         <span class="bar"></span>
+                                     </a>
+                                 </li>
+                            }
+                        }                       
                     </ul><!-- mt icon list end here -->
                     <!-- navigation start here -->
                     <nav id="nav">
@@ -44,6 +49,21 @@
                                     </ul>
                                 </div>
                             </li>
+                            @{
+                                if ((Fashion.Models.Customer)Session["CUS"] != null)
+                                {
+                                     <li>
+                                         <a class="drop-link" href="/login/index">Tài khoản<i class="fa fa-angle-down hidden-lg hidden-md" aria-hidden="true"></i></a>
+                                         <div class="s-drop">
+                                             <ul>
+                                                 <li><a href="/customer/index">Thông tin</a></li>
+                                                 <li><a href="/customer/listorder">Đơn hàng</a></li>
+                                                 <li><a href="/customer/logout">Đăng xuất</a></li>
+                                             </ul>
+                                         </div>
+                                     </li>
+                                }
+                            }                            
                         </ul>
                     </nav>
                     <!-- mt icon list end here -->

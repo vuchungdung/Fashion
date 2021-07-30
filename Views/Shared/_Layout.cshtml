@@ -22,7 +22,84 @@
         </div>
         <div class="w1">
             @{Html.RenderAction("_Header", "Home"); }
-            @Html.Partial("_SideMenu")
+            @{
+                if ((Fashion.Models.Customer)Session["CUS"] == null)
+                {
+                    <div class="mt-side-menu">
+                        <!-- mt holder start here -->
+                        <div class="mt-holder">
+                            <a href="#" class="side-close"><span></span><span></span></a>
+                            <strong class="mt-side-title">TÀI KHOẢN CỦA TÔI</strong>
+                            <!-- mt side widget start here -->
+                            <div class="mt-side-widget">
+                                <header>
+                                    <span class="mt-side-subtitle">ĐĂNG NHẬP</span>
+                                    <p>Chào mừng trở lại! Đăng nhập vào tài khoản của bạn</p>
+                                </header>
+                                <form action="/customer/login" method="post">
+                                    <fieldset>
+                                        <input type="text" name="Username" required placeholder="Tên đăng nhập hoặc tài khoản email" class="input">
+                                        <input type="password" name="Password" required placeholder="Mật khẩu" class="input">
+                                        <div class="box">
+                                            <a class="help">Giúp đỡ?</a>
+                                        </div>
+                                        <button type="submit" class="btn-type1">Đăng nhập</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <!-- mt side widget end here -->
+                            <div class="or-divider"><span class="txt">HOẶC</span></div>
+                            <!-- mt side widget start here -->
+                            <div class="mt-side-widget">
+                                <header>
+                                    <span class="mt-side-subtitle">TẠO TÀI KHOẢN MỚI</span>
+                                    <p>Tạo tài khoản mới</p>
+                                </header>
+                                <form onsubmit="register()" method="post">
+                                    <fieldset>
+                                        <input type="text" name="_Username" placeholder="Tên đăng nhập hoặc tài khoản email" required class="input">
+                                        <input type="email" name="_Email" placeholder="Email liên hệ mua hàng" class="input" required>
+                                        <input type="text" name="_Name" placeholder="Tên khách hàng" class="input" required>
+                                        <input type="text" name="_Phone" placeholder="Số điện thoại" class="input" required>
+                                        <input type="text" name="_Address" placeholder="Địa chỉ nhận hàng" class="input">
+                                        <input type="password" name="_Password" placeholder="Mật khẩu" class="input" required>
+                                        <button type="submit" class="btn-type1">Đăng kí</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <!-- mt side widget end here -->
+                        </div>
+                        <!-- mt holder end here -->
+                    </div>
+                    <script>
+                        function register() {
+                            var username = $("input[name=_Username]").val();
+                            var email = $("input[name=_Email]").val();
+                            var password = $("input[name=_Password]").val();
+                            var name = $("input[name=_Name]").val();
+                            var phone = $("input[name=_Phone]").val();
+                            var address = $("input[name=_Address]").val();
+                            $.ajax({
+                                method: "POST",
+                                url: "/customer/register",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify({
+                                    Username: username,
+                                    Email: email,
+                                    Password: password,
+                                    Name: name,
+                                    Phone: phone,
+                                    Address: address
+                                }),
+                                success: function (res) {
+                                    alert("Bạn đã đăng ký thành công!");
+                                    window.location.href = "/";
+                                }
+                            });
+                        }
+                    </script>
+                }
+            }
             @Html.Partial("_Search")
             @RenderBody()
             @Html.Partial("_Footer")

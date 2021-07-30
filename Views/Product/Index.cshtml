@@ -86,7 +86,7 @@
                 <div class="col-xs-12">
                     <ul class="mt-tabs text-center text-uppercase">
                         <li><a href="#tab1" class="active">CHI TIẾT</a></li>
-                        <li><a href="#tab2">NHẬN XÉT (12)</a></li>
+                        <li><a href="#tab2">NHẬN XÉT</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="tab1">
@@ -94,27 +94,42 @@
                         </div>
                         <div id="tab2">
                             <div class="product-comment">
-                                <div class="mt-box">
-                                    <div class="mt-hold">
-                                        <span class="name">John Wick</span>
-                                        <time datetime="2016-01-01">09:10 Nov, 19 2016</time>
+                                @foreach (var item in (List<Fashion.ViewModel.CommentViewModel>)ViewBag.ListComments)
+                                {
+                                    <div class="mt-box">
+                                        <div class="mt-hold">
+                                            <span class="name">@item.Name</span>
+                                            <time datetime="2016-01-01">@item.CreatedDate.ToString("dd-MM-yyyy hh:MM:ss")</time>
+                                        </div>
+                                        <p>@item.Content</p>
                                     </div>
-                                    <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit sse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p>
-                                </div>
-                                <form action="#" class="p-commentform">
-                                    <fieldset>
-                                        <h2>Thêm nhận xét</h2>
-                                        <div class="mt-row">
-                                            <label>Tên</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="mt-row">
-                                            <label>Nhận xét</label>
-                                            <textarea class="form-control"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn-type4">THÊM NHẬN XÉT</button>
-                                    </fieldset>
-                                </form>
+                                }
+
+                                @{
+                                    var user = (Fashion.Models.Customer)Session["CUS"];
+                                    if (user != null)
+                                    {
+                                        <form action="/comment/create" method="post">
+                                            <fieldset>
+                                                <h2>Thêm nhận xét</h2>
+                                                <input type="text" name="ProductId" value="@Model.ID" style="display:none;"/>
+                                                <div class="mt-row">
+                                                    <label>Tên</label>
+                                                    <input type="text" value="@user.Name" readonly required class="form-control">
+                                                </div>
+                                                <div class="mt-row">
+                                                    <label>Nhận xét</label>
+                                                    <textarea name="Content" required class="form-control"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn-type4">THÊM NHẬN XÉT</button>
+                                            </fieldset>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <p style="font-weight:600;font-size:14px;color:red">Vui lòng đăng nhập để có thể đánh giá sản phẩm</p>
+                                    }
+                                }
                             </div>
                         </div>
                     </div>

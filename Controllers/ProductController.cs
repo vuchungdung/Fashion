@@ -1,4 +1,5 @@
 ﻿using Fashion.Models;
+using Fashion.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,17 @@ namespace Fashion.Controllers
             var product = db.Products.Where(x => x.ID == id).FirstOrDefault();
             ViewBag.ListColors = db.Colors.ToList();
             ViewBag.ListSizes = db.Sizes.ToList();
+            var query = from c in db.Customers
+                        join cm in db.Comments
+                        on c.Id equals cm.CustomerId
+                        where cm.ProductId == id
+                        select new CommentViewModel()
+                        {
+                            Name = c.Name,
+                            CreatedDate = cm.CreatedDate,
+                            Content = cm.Content
+                        };
+            ViewBag.ListComments = query.ToList().OrderByDescending(x => x.CreatedDate).ToList();
             ViewBag.ListProducts = db.Products.Where(x => x.ID != product.ID && x.CategoryId == product.CategoryId).Take(5).ToList();
             return View(product);
         }

@@ -136,9 +136,5 @@ namespace Fashion.Areas.Admin.Controllers
             Notification.set_flash("Cập nhật thành công!", "success");
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Detail(int id)
-        {
-            return View();
-        }
     }
 }
