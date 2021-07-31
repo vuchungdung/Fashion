@@ -63,50 +63,59 @@ namespace Fashion.Controllers
         [HttpPost]
         public ActionResult AddCart(int pid, int qty, int cId, int sId)
         {
-            var p = db.Products.Where(m => m.Status == true && m.ID == pid).First();
-            var op = db.ProductOptions.Where(m => m.ColorId == cId && m.SizeId == sId && m.ProductId == pid).FirstOrDefault();
-            var cart = Session["Cart"];
-            if (cart == null)
+            if((Customer)Session["CUS"] == null)
             {
-                var item = new CartViewModel();
-                item.ProductID = p.ID;
-                item.Name = p.Name;
-                item.Image = p.Image;
-                item.Quantity = qty;
-                item.Price = p.Price;
-                item.OptionId = op.Id;
-                var list = new List<CartViewModel>();
-                list.Add(item);
-                Session["Cart"] = list;
-                return Json(new { result = 1, count = list.Count() });
+                return Json(new { result = 4 }, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                var list = (List<CartViewModel>)cart;
-
-                if (list.Exists(m => m.ProductID == pid))
+                var query = from p in db.Products
+                            join op in db.ProductOptions on p.ID equals op.ProductId
+                            join c in db.Colors on op.ColorId equals c.ID
+                            join s in db.Sizes on op.SizeId equals s.ID
+                            where p.ID == pid && c.ID == cId && s.ID == sId
+                            select new CartViewModel()
+                            {
+                                ProductID = pid,
+                                Name = p.Name,
+                                Quantity = qty,
+                                Price = (p.ActivePromotion == true ? p.Price : p.PromotionPrice),
+                                Image = p.Image,
+                                SizeId = sId,
+                                ColorId = cId,
+                                ColorName = c.Name,
+                                SizeName = s.Name
+                            };
+                var _p = query.FirstOrDefault();
+                var cart = Session["Cart"];
+                if (cart == null)
                 {
-                    foreach (var item in list)
-                    {
-                        if (item.ProductID == pid)
-                            item.Quantity += qty;
-                        return Json(new { result = 2, count = list.Count() });
-                    }
+                    var list = new List<CartViewModel>();
+                    list.Add(_p);
+                    Session["Cart"] = list;
+                    return Json(new { result = 1 },JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    var item = new CartViewModel();
-                    item.ProductID = p.ID;
-                    item.Name = p.Name;
-                    item.Image = p.Image;
-                    item.Quantity = qty;
-                    item.Price = p.Price;
-                    item.OptionId = op.Id;
-                    list.Add(item);
-                    return Json(new { result = 1, count = list.Count() });
+                    var list = (List<CartViewModel>)cart;
+
+                    if (list.Exists(m => m.ProductID == pid && m.SizeId == sId && m.ColorId == cId))
+                    {
+                        foreach (var item in list)
+                        {
+                            if (item.ProductID == pid)
+                                item.Quantity += qty;
+                            return Json(new { result = 2 }, JsonRequestBehavior.AllowGet);
+                        }
+                    }
+                    else
+                    {
+                        list.Add(_p);
+                        return Json(new { result = 1 }, JsonRequestBehavior.AllowGet);
+                    }
                 }
+                return Json(new { result = 0 }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { result = 0});
         }
         public ActionResult RemoveAll()
         {
@@ -125,7 +134,6 @@ namespace Fashion.Controllers
                 return RedirectToAction("Index", "Cart");
             return View();
         }
-
         [HttpPost]
         public JsonResult Payment(String Address, String FullName, String Phone, String Email)
         {
@@ -173,6 +181,26 @@ namespace Fashion.Controllers
                 }
             }
             return Json(null);
+        }
+        [HttpGet]
+        public JsonResult ListCart()
+        {
+            var cart = (List<Fashion.ViewModel.CartViewModel>)Session["Cart"];
+            var result = "";
+            if (cart != null)
+            {
+                float? total = 0;
+                foreach(var item in cart)
+                {
+                    total = total + item.Price * item.Quantity;
+                    var html = "<div class=\"cart-row\"> <a href=\"/product/index/"+item.ProductID+"\" class=\"img\"><img src=\""+item.Image+"\" alt=\"image\" class=\"img-responsive\"></a> <div class=\"mt-h\"> <span class=\"mt-h-title\"><a href=\"/product/index/"+item.ProductID+"\">"+item.Name+"</a></span> <span class=\"price\"> "+item.Price+" VNĐ</span> <span class=\"mt-h-title\">Số lượng: "+item.Quantity+ "</span><span class=\"mt-h-title\">Màu sắc: " + item.ColorName + "</span> <span class=\"mt-h-title\">Kích cỡ: " + item.SizeName + "</span> </div> <a href=\"#\" class=\"close fa fa-times\"></a></div>";
+                    result = result + html;
+                }
+                var end = "<div class=\"cart-row-total\"> <span class=\"mt-total\">Tổng tiền</span> <span class=\"mt-total-txt\">"+total+" VNĐ</span></div><div class=\"cart-btn-row\"> <a href=\"/product/\" class=\"btn-type2\">Xem</a> <a href=\"\" class=\"btn-type3\">Thanh toán</a></div>";
+                result = result + end;
+                return Json(new {cart = cart, result = result }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
     }
 }

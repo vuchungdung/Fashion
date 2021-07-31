@@ -90,15 +90,33 @@
     <!-- Footer Area of the Page end -->
 </footer>
 <script>
+    function loadCart() {
+        $.ajax({
+            url: "/product/listcart",
+            method: "GET",
+            contentType: "application/json; charset=utf-8",
+            data: null,
+            success: function (res) {
+                if (res.cart.length >= 1) {
+                    $("#num").html(res.cart.length);
+                    $("#cartdetail").empty();
+                    $("#cartdetail").append(res.result);
+                }
+                else{
+                    $("#num").html(res.length);
+                    $("#cartdetail").empty();
+                    $("#cartdetail").append("<p style=\"font-weight:600;color:red;font-size:16px\">Chưa có sản phẩm nào trong giỏ hàng</p>");
+                }
+            }
+        })
+    }
+    $(document).ready(function () {
+        loadCart();
+    })
     function AddCart(pId, pCount) {
         pCount = $("#pty_p").val();
         pSize = $("#osize").val();
         pColor = $("#ocolor").val();
-
-        console.log(pCount);
-        console.log(pSize);
-        console.log(pColor);
-
         if (pCount < 1) {
             alert("Số lượng mua không hợp lệ!");
         }
@@ -112,10 +130,12 @@
                 if (res.result == 0) {
                     alert("Thêm giỏ hàng thất bại!");
                 }
+                else if (res.result == 4) {
+                    alert("Vui lòng đăng nhập trước khi thêm giỏ hàng!");
+                }
                 else {
-                    $("#num").html(res.count);
+                    loadCart();
                     alert("Thêm giỏ hàng thành công!");
-
                 }
             }
         })
