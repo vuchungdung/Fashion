@@ -6955,20 +6955,21 @@
     <Content Include="Views\Shared\_Search.cshtml" />
     <Content Include="Views\Shared\_Slide.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\CheckOut.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Shared\_Cart.cshtml" />
-    <Content Include="Views\Product\Checkout.cshtml" />
+    <Content Include="Views\Cart\ViewCart.cshtml" />
+    <Content Include="Views\Cart\Success.cshtml" />
+    <Content Include="Views\Customer\ChangePass.cshtml" />
+    <Content Include="Views\Customer\ListOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\CustomerAdmin\" />
     <Folder Include="Areas\Admin\Views\OrderAdmin\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

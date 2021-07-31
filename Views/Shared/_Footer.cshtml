@@ -92,7 +92,7 @@
 <script>
     function loadCart() {
         $.ajax({
-            url: "/product/listcart",
+            url: "/cart/listcart",
             method: "GET",
             contentType: "application/json; charset=utf-8",
             data: null,
@@ -121,7 +121,7 @@
             alert("Số lượng mua không hợp lệ!");
         }
         $.ajax({
-            url: "/product/addcart",
+            url: "/cart/addcart",
             method: "POST",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ pid: pId, qty: pCount, cId: pColor, sId: pSize }),

@@ -43,5 +43,13 @@ namespace Fashion.Controllers
             db.SaveChanges();
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult ChangePass()
+        {
+            return View();
+        }
+        public ActionResult ListOrder()
+        {
+            return View();
+        }
     }
 }
