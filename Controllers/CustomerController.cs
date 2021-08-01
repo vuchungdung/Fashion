@@ -22,7 +22,7 @@ namespace Fashion.Controllers
             }
             else
             {
-                return View("Index", "Home");
+                return RedirectToAction("Index", "Home");
             }
         }
         [HttpPost]
@@ -59,8 +59,20 @@ namespace Fashion.Controllers
         public ActionResult ListOrder()
         {
             var cus = (Customer)Session["CUS"];
-            var entity = db.Orders.Where(x => x.CustomerId == cus.Id).ToList();
-            return View(entity);
+            if(cus != null)
+            {
+                var entity = db.Orders.Where(x => x.CustomerId == cus.Id).ToList();
+                return View(entity);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

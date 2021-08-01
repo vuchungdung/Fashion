@@ -2,13 +2,11 @@
     <div class="mt-holder">
         <a href="#" class="search-close"><span></span><span></span></a>
         <div class="mt-frame">
-            <form action="#">
-                <fieldset>
-                    <input type="text" placeholder="Search...">
-                    <span class="icon-microphone"></span>
-                    <button class="icon-magnifier" type="submit"></button>
-                </fieldset>
-            </form>
+            @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+            {
+                <input type="text" value="@ViewBag.keyWord" name="tukhoa" placeholder="Nhập từ khóa tìm kiếm">
+                <button type="submit">Tìm kiếm</button>
+            }
         </div>
     </div>
 </div>

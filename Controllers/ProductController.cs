@@ -1,6 +1,7 @@
 ﻿using Fashion.Library;
 using Fashion.Models;
 using Fashion.ViewModel;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,16 +32,18 @@ namespace Fashion.Controllers
             ViewBag.ListProducts = db.Products.Where(x => x.ID != product.ID && x.CategoryId == product.CategoryId).Take(5).ToList();
             return View(product);
         }
-        public ActionResult List(int? id)
+        public ActionResult List(int? id, int page = 1, int pageSize = 9)
         {
+            IPagedList<Product> result = null;
             var list = db.Products.ToList();
             if(id != null)
             {
                 list = list.Where(x => x.CategoryId == id).ToList();
             }
+            result = list.ToPagedList(page, pageSize);
             ViewBag.Categories = db.Categories.ToList();
             ViewBag.Products = list.Where(x => x.ActivePromotion == true).ToList();
-            return View(list);
+            return View(result);
         }
         public ActionResult Count(int pId,int? sId,int? cId)
         {
@@ -59,6 +62,21 @@ namespace Fashion.Controllers
                 total = total + item.Count;
             }
             return Json(total, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Search(string tukhoa = "", int page = 1, int pageSize = 9)
+        {
+            IPagedList<Product> result = null;
+
+            var list = db.Products.ToList();
+            if (!String.IsNullOrEmpty(tukhoa))
+            {
+                list = list.Where(x => x.Name.ToUpper().Contains(tukhoa.ToUpper())).ToList();
+            }
+            result = list.ToPagedList(page, pageSize);
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Products = list.Where(x => x.ActivePromotion == true).ToList();
+            ViewBag.keyWord = tukhoa;
+            return View(result); 
         }
     }
 }

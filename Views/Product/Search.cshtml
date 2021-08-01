@@ -1,10 +1,10 @@
 ﻿@model PagedList.IPagedList<Fashion.Models.Product>
 @using PagedList.Mvc;
-
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 @{
     Fashion.Models.FSDbContext db = new Fashion.Models.FSDbContext();
     var categories = (List<Fashion.Models.Category>)ViewBag.Categories;
@@ -14,7 +14,6 @@
     }
     var products = (List<Fashion.Models.Product>)ViewBag.Products;
 }
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <main id="mt-main">
     <!-- Mt Contact Banner of the Page -->
     <section class="mt-contact-banner style4" style="background-image: url(/assets/images/img11.jpg);">
@@ -118,14 +117,14 @@
                     }
                 </ul><!-- mt productlisthold end here -->
                 <!-- mt pagination start here -->
-                
+
                 <div class="row">
                     <div class="col-sm-12">
                         @{ if (Model.PageCount > 1)
                             {
-                                <nav aria-label="Page navigation example" style="text-align:center">
-                                    @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
-                                </nav>
+                               <nav aria-label="Page navigation example" style="text-align:center">
+                                   @Html.PagedListPager(Model, page => Url.Action("Search", new { page, @tukhoa = @ViewBag.keyWord }))
+                               </nav>
                             }
                         }
                     </div>
