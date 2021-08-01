@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.ModelBinding;
 using System.Web.Mvc;
 
 namespace Fashion.Controllers
@@ -79,15 +80,15 @@ namespace Fashion.Controllers
         {
             if (Session["CUS"] != null && Session["Cart"] != null)
             {
-                int user_id = Convert.ToInt32(Session["User_ID"]);
-                ViewBag.Info = db.Users.Where(m => m.Id == user_id).First();
+                var user = (Customer)Session["CUS"];
+                ViewBag.Info = user;
             }
             else
                 return RedirectToAction("Index", "Cart");
             return View();
         }
         [HttpPost]
-        public JsonResult Payment(String Address, String FullName, String Phone, String Email)
+        public JsonResult Payment()
         {
             var order = new Order();
             int user_id = Convert.ToInt32(Session["User_ID"]);
@@ -109,30 +110,13 @@ namespace Fashion.Controllers
             return Json(true);
 
         }
-        public JsonResult Update(int pid, String option)
+        [HttpGet]
+        public ActionResult Update(int pId,int sId, int cId,int count)
         {
-            var sCart = (List<CartViewModel>)Session["Cart"];
-            CartViewModel c = sCart.First(m => m.ProductID == pid);
-            if (c != null)
-            {
-                switch (option)
-                {
-                    case "add":
-                        c.Quantity++;
-                        return Json(1);
-                    case "minus":
-                        c.Quantity--;
-                        return Json(2);
-                    case "remove":
-                        sCart.Remove(c);
-                        if (sCart.Count() == 0)
-                            Session.Remove("Cart");
-                        return Json(3);
-                    default:
-                        break;
-                }
-            }
-            return Json(null);
+            var cart = (List<CartViewModel>)Session["Cart"];
+            var item = cart.Where(x => x.ProductID == pId && x.SizeId == sId && x.ColorId == cId).FirstOrDefault();
+            item.Quantity = count;
+            return Json(true,JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult ListCart()
@@ -154,11 +138,32 @@ namespace Fashion.Controllers
             }
             return Json(null, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ViewCart()
+        public ActionResult ViewCart(string code = "")
         {
             if (Session["CUS"] != null)
             {
+                var carttotal = new CartTotal();
+                float? _price = 0;
                 var cart = (List<Fashion.ViewModel.CartViewModel>)Session["Cart"];
+                foreach(var item in cart)
+                {
+                    _price = _price + item.Price * item.Quantity;
+                }
+                carttotal.Total = _price;
+                if (String.IsNullOrEmpty(code))
+                {
+                    carttotal.Payment = _price;
+                }
+                else
+                {
+                    var entity = db.Discounts.Where(x => x.Code == code && x.Status == true).FirstOrDefault();
+                    if(entity != null)
+                    {
+                        carttotal.Code = entity.Value.ToString();
+                        carttotal.Payment = _price - ((_price * entity.Value) / 100);
+                    }
+                }
+                ViewBag.Carttotal = carttotal;
                 return View(cart);
             }
             else

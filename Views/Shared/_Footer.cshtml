@@ -117,27 +117,35 @@
         pCount = $("#pty_p").val();
         pSize = $("#osize").val();
         pColor = $("#ocolor").val();
+        isValid = 0;
+        if (pSize == 0 || pColor == 0) {
+            alert("Vui lòng chọn thông tin cho sản phẩm!");
+            isValid=1;
+        }
         if (pCount < 1) {
             alert("Số lượng mua không hợp lệ!");
+            isValid=1;
         }
-        $.ajax({
-            url: "/cart/addcart",
-            method: "POST",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ pid: pId, qty: pCount, cId: pColor, sId: pSize }),
-            dataType: "json",
-            success: function (res) {
-                if (res.result == 0) {
-                    alert("Thêm giỏ hàng thất bại!");
+        if (isValid == 0) {
+            $.ajax({
+                url: "/cart/addcart",
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ pid: pId, qty: pCount, cId: pColor, sId: pSize }),
+                dataType: "json",
+                success: function (res) {
+                    if (res.result == 0) {
+                        alert("Thêm giỏ hàng thất bại!");
+                    }
+                    else if (res.result == 4) {
+                        alert("Vui lòng đăng nhập trước khi thêm giỏ hàng!");
+                    }
+                    else {
+                        loadCart();
+                        alert("Thêm giỏ hàng thành công!");
+                    }
                 }
-                else if (res.result == 4) {
-                    alert("Vui lòng đăng nhập trước khi thêm giỏ hàng!");
-                }
-                else {
-                    loadCart();
-                    alert("Thêm giỏ hàng thành công!");
-                }
-            }
-        })
+            })
+        }
     }
 </script>
