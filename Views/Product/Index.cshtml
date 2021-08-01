@@ -75,7 +75,16 @@
                         <form class="product-form">
                             <fieldset>
                                 <div class="row-val">
-                                    <button type="button" onclick="AddCart(@Model.ID,0)">THÊM VÀO GIỎ</button>
+                                    @{
+                                        if ((Fashion.Models.Customer)Session["CUS"] != null)
+                                        {
+                                            <button type="button" onclick="AddCart(@Model.ID,0)">THÊM VÀO GIỎ</button>
+                                        }
+                                        else
+                                        {
+                                            <p style="font-weight:600;font-size:14px;color:red">Vui lòng đăng nhập để có thể thêm sản phẩm vào giỏ hàng</p>
+                                        }
+                                    }
                                 </div>
                             </fieldset>
                         </form>

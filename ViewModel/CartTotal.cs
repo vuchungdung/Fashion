@@ -10,5 +10,6 @@ namespace Fashion.ViewModel
         public float? Total { get; set; } = 0;
         public string Code { get; set; }
         public float? Payment { get; set; } = 0;
+        public string Value { get; set; }
     }
 }

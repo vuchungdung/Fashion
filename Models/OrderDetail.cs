@@ -16,6 +16,8 @@ namespace Fashion.Models
         public int OrderId { set; get; }
         public int ProductId { set; get; }
         public int Quantity { set; get; }
+        public int ColorId { get; set; }
+        public int SizeId { get; set; }
         public float Price { get; set; }
         [ForeignKey("OrderId")]
         public virtual Order Order { set; get; }

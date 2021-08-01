@@ -81,33 +81,45 @@ namespace Fashion.Controllers
             if (Session["CUS"] != null && Session["Cart"] != null)
             {
                 var user = (Customer)Session["CUS"];
-                ViewBag.Info = user;
+                return View(user);
             }
             else
-                return RedirectToAction("Index", "Cart");
-            return View();
+                return RedirectToAction("ViewCart", "Cart");
         }
         [HttpPost]
-        public JsonResult Payment()
+        public ActionResult Payment(Customer model)
         {
+            var _cart= (CartTotal)Session["CartPrint"];
             var order = new Order();
-            int user_id = Convert.ToInt32(Session["User_ID"]);
-            order.Code = DateTime.Now.ToString("yyyyMMddhhMMss"); // yyyy-MM-dd hh:MM:ss
+            if (!String.IsNullOrEmpty(_cart.Code))
+            {
+                order.Code = _cart.Code;
+            }
+            order.CustomerName = model.Name;
+            order.CustomerId = model.Id;
+            order.CustomerEmail = model.Email;
+            order.CustomerAddress = model.Address;
+            order.CustomerMobile = model.Phone;
+            order.CustomerMessage = model.AddressMore;
+            order.CreatedBy = model.Id;
+            order.CreatedDate = DateTime.Now;
             order.Status = 1;
             db.Orders.Add(order);
             db.SaveChanges();
-
-            var OrderID = order.ID;
-
             foreach (var c in (List<CartViewModel>)Session["Cart"])
             {
                 var orderdetails = new OrderDetail();
+                orderdetails.OrderId = order.ID;
+                orderdetails.Price = (float)c.Price;
+                orderdetails.ProductId = c.ProductID;
+                orderdetails.Quantity = c.Quantity;
+                orderdetails.ColorId = c.ColorId;
+                orderdetails.SizeId = c.SizeId;
             }
             db.SaveChanges();
-
             Session.Remove("Cart");
-            Notification.set_flash("Bạn đã đặt hàng thành công!", "success");
-            return Json(true);
+            Session.Remove("CartPrint");
+            return View("Success");
 
         }
         [HttpGet]
@@ -140,7 +152,7 @@ namespace Fashion.Controllers
         }
         public ActionResult ViewCart(string code = "")
         {
-            if (Session["CUS"] != null)
+            if (Session["CUS"] != null && Session["Cart"] != null)
             {
                 var carttotal = new CartTotal();
                 float? _price = 0;
@@ -159,11 +171,12 @@ namespace Fashion.Controllers
                     var entity = db.Discounts.Where(x => x.Code == code && x.Status == true).FirstOrDefault();
                     if(entity != null)
                     {
-                        carttotal.Code = entity.Value.ToString();
+                        carttotal.Value = entity.Value.ToString();
+                        carttotal.Code = code;
                         carttotal.Payment = _price - ((_price * entity.Value) / 100);
                     }
                 }
-                ViewBag.Carttotal = carttotal;
+                Session["CartPrint"] = carttotal;
                 return View(cart);
             }
             else

@@ -5,7 +5,7 @@
 }
 <script src="~/Assets/js/jquery.js"></script>
 @{
-    var cart = (Fashion.ViewModel.CartTotal)ViewBag.Carttotal;
+    var cart = (Fashion.ViewModel.CartTotal)Session["CartPrint"];
 }
 <main id="mt-main">
     <section class="mt-contact-banner mt-banner-22" style="background-image: url(/assets/images/img-76.jpg);">
@@ -151,7 +151,7 @@
                                 <div class="txt-holder">
                                     <strong class="title sub-title pull-left">Mã giảm giá</strong>
                                     <div class="txt pull-right">
-                                        <span>@cart.Code %</span>
+                                        <span>@cart.Value %</span>
                                     </div>
                                 </div>
                             </li>
@@ -181,8 +181,8 @@
     <!-- Mt Detail Section of the Page end -->
 </main>
 <script>
-    function update(pId, cId, sId) {
-        var id = ""+ pId + cId + sId;
+    function update(pId, sId, cId) {
+        var id = ""+ pId + sId + cId;
         var _id = "count_" + id;
         var count = $("#" + _id).val();
         $.ajax({

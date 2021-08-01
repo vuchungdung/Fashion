@@ -1,20 +1,22 @@
-﻿
+﻿@model Fashion.Models.Customer
 @{
     ViewBag.Title = "CheckOut";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    var cart = (Fashion.ViewModel.CartTotal)Session["CartPrint"];
+}
 <main id="mt-main">
     <section class="mt-contact-banner mt-banner-22" style="background-image: url(/assets/images/img-76.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <h1 class="text-center">CHECK OUT</h1>
+                    <h1 class="text-center">Thanh toán</h1>
                     <!-- Breadcrumbs of the Page -->
                     <nav class="breadcrumbs">
                         <ul class="list-unstyled">
-                            <li><a href="#">Home <i class="fa fa-angle-right"></i></a></li>
-                            <li>Check Out</li>
+                            <li><a href="/">Trang chủ <i class="fa fa-angle-right"></i></a></li>
+                            <li>Thanh toán</li>
                         </ul>
                     </nav>
                     <!-- Breadcrumbs of the Page end -->
@@ -31,15 +33,15 @@
                     <ul class="list-unstyled process-list">
                         <li class="active">
                             <span class="counter">01</span>
-                            <strong class="title">Shopping Cart</strong>
+                            <strong class="title">Giỏ hàng</strong>
                         </li>
                         <li class="active">
                             <span class="counter">02</span>
-                            <strong class="title">Check Out</strong>
+                            <strong class="title">Thanh toán</strong>
                         </li>
                         <li>
                             <span class="counter">03</span>
-                            <strong class="title">Order Complete</strong>
+                            <strong class="title">Thành công</strong>
                         </li>
                     </ul>
                     <!-- Process List of the Page end -->
@@ -52,26 +54,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
-                    <h2>BILLING DETAILS</h2>
+                    <h2>Chi tiết đươn hàng</h2>
                     <!-- Bill Detail of the Page -->
-                    <form action="/cart/payment" class="bill-detail">
+                    <form action="/cart/payment" method="post" class="bill-detail">
                         <fieldset>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="Name" value="" placeholder="Họ và tên">
+                                <input type="text" style="display:none" name="Id" value="@Model.Id" />
+                                <input type="text" class="form-control" name="Name" value="@Model.Name" placeholder="Họ và tên">
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" name="Email" value="" placeholder="Email khách hàng">
+                                <input type="email" class="form-control" name="Email" value="@Model.Email" placeholder="Email khách hàng">
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="Address" value="" placeholder="Địa chỉ khách hàng"></textarea>
+                                <input class="form-control" name="Address" value="@Model.Address" placeholder="Địa chỉ khách hàng" />
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="Phone" value="" placeholder="Nhập số điện thoại">
+                                <input type="text" class="form-control" name="Phone" value="@Model.Phone" placeholder="Nhập số điện thoại">
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="AddressMore" value="" placeholder="Địa chỉ nhận hàng khác"></textarea>
+                                <textarea class="form-control" name="AddressMore" value="@Model.Address" placeholder="Địa chỉ nhận hàng khác"></textarea>
                             </div>
                         </fieldset>
+                        <button type="submit" style="border:none" class="process-btn">Gửi đơn hàng <i class="fa fa-check"></i></button>
                     </form>
                     <!-- Bill Detail of the Page end -->
                 </div>
@@ -81,104 +85,38 @@
                         <ul class="list-unstyled block">
                             <li>
                                 <div class="txt-holder">
-                                    <div class="text-wrap pull-left">
-                                        <strong class="title">PRODUCTS</strong>
-                                        <span>Marvelous Modern 3 Seater       x1</span>
-                                        <span>Bombi Chair    x1</span>
-                                    </div>
-                                    <div class="text-wrap txt text-right pull-right">
-                                        <strong class="title">TOTALS</strong>
-                                        <span><i class="fa fa-eur"></i> 299,00</span>
-                                        <span><i class="fa fa-eur"></i> 532,00</span>
+                                    <strong class="title sub-title pull-left">Tổng tiền</strong>
+                                    <div class="txt pull-right">
+                                        <span> @cart.Total VNĐ</span>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="txt-holder">
-                                    <strong class="title sub-title pull-left">CART SUBTOTAL</strong>
+                                    <strong class="title sub-title pull-left">Mã giảm giá</strong>
                                     <div class="txt pull-right">
-                                        <span><i class="fa fa-eur"></i> 532,00</span>
+                                        <span> @cart.Value % </span>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="txt-holder">
-                                    <strong class="title sub-title pull-left">SHIPPING</strong>
+                                    <strong class="title sub-title pull-left">Vận chuyển</strong>
                                     <div class="txt pull-right">
-                                        <span>Free Shipping</span>
+                                        <span>Miễn phí vận chuyển</span>
                                     </div>
                                 </div>
                             </li>
                             <li style="border-bottom: none;">
                                 <div class="txt-holder">
-                                    <strong class="title sub-title pull-left">ORDER TOTAL</strong>
+                                    <strong class="title sub-title pull-left">Tổng thanh toán</strong>
                                     <div class="txt pull-right">
-                                        <span><i class="fa fa-eur"></i> 1299,00</span>
+                                        <span> @cart.Payment VNĐ</span>
                                     </div>
                                 </div>
                             </li>
                         </ul>
-                        <h2>PAYMENT METHODS</h2>
-                        <!-- Panel Group of the Page -->
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                            <!-- Panel Panel Default of the Page -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                    <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            DIRECT BANK TRANSFER
-                                            <span class="check"><i class="fa fa-check"></i></span>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                    <div class="panel-body">
-                                        <p>Make your payment directly into our bank account. Please use your order id as the payment reference. Your order wont be shippided until the funds have cleared in our account</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Panel Panel Default of the Page end -->
-                            <!-- Panel Panel Default of the Page -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            CHEQUE PAYMENT
-                                            <span class="check"><i class="fa fa-check"></i></span>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                    <div class="panel-body">
-                                        <p>Make your payment directly into our bank account. Please use your order id as the payment reference. Your order wont be shippided until the funds have cleared in our account</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Panel Panel Default of the Page end -->
-                            <!-- Panel Panel Default of the Page -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingThree">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            PAYPAL
-                                            <span class="check"><i class="fa fa-check"></i></span>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                    <div class="panel-body">
-                                        <p>Make your payment directly into our bank account. Please use your order id as the payment reference. Your order wont be shippided until the funds have cleared in our account</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Panel Panel Default of the Page end -->
-                        </div>
-                        <!-- Panel Group of the Page end -->
                     </div>
-                    <div class="block-holder">
-                        <input type="checkbox" checked> I’ve read &amp; accept the <a href="#">terms &amp; conditions</a>
-                    </div>
-                    <a href="#" class="process-btn">PROCEED TO CHECKOUT <i class="fa fa-check"></i></a>
                 </div>
             </div>
         </div>
