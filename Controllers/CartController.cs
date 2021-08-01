@@ -104,6 +104,7 @@ namespace Fashion.Controllers
             order.CreatedBy = model.Id;
             order.CreatedDate = DateTime.Now;
             order.Status = 1;
+            order.Total = (float)_cart.Payment;
             db.Orders.Add(order);
             db.SaveChanges();
             foreach (var c in (List<CartViewModel>)Session["Cart"])
@@ -115,7 +116,9 @@ namespace Fashion.Controllers
                 orderdetails.Quantity = c.Quantity;
                 orderdetails.ColorId = c.ColorId;
                 orderdetails.SizeId = c.SizeId;
+                db.OrderDetails.Add(orderdetails);
             }
+
             db.SaveChanges();
             Session.Remove("Cart");
             Session.Remove("CartPrint");

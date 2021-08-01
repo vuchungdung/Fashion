@@ -1,4 +1,4 @@
-﻿
+﻿@model Fashion.Models.Customer
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,7 +14,7 @@
                     <!-- Breadcrumbs of the Page -->
                     <nav class="breadcrumbs">
                         <ul class="list-unstyled">
-                            <li><a href="#">Trang chủ<i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="/">Trang chủ<i class="fa fa-angle-right"></i></a></li>
                             <li>Thông tin</li>
                         </ul>
                     </nav><!-- Breadcrumbs of the Page end -->
@@ -22,31 +22,32 @@
             </div>
         </div>
     </section><!-- Mt Contact Banner of the Page end -->
-    <div class="mt-padding-info">
+    <div class="mt-padding-info" style="margin:30px 100px">
         <h2>THÔNG TIN KHÁCH HÀNG</h2>
         <!-- Bill Detail of the Page -->
-        <form action="#">
+        <form action="/customer/update" class="form-group">
             <fieldset>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Họ và tên">
+                    <input type="text" name="Id" value="@Model.Id" style="display:none">
+                    <input type="text" class="form-control" name="Name" value="@Model.Name" placeholder="Họ và tên">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" placeholder="Số nhà, tên đường..."></textarea>
+                    <input type="text" name="Address" value="@Model.Address" class="form-control" placeholder="Số nhà, tên đường..." />
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Phường / Xã">
+                    <input type="email" name="Email" value="@Model.Email" class="form-control" placeholder="Email của bạn">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Quận / Huyện">
+                    <input type="text" name="Phone" value="@Model.Phone" class="form-control" placeholder="Số điện thoại">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Tỉnh / Thành phố">
+                    <input type="text" name="Username" value="@Model.Username" class="form-control" readonly>
                 </div>
                 <div class="form-group">
-                    <input type="tel" class="form-control" placeholder="Số điện thoại">
+                    <input type="password" name="Password" value="@Model.Password" class="form-control" placeholder="Mật khẩu">
                 </div>
                 <div>
-                    <a href="#" class="btn-type3">Xác nhận</a>
+                    <button type="submit" class="btn-type3">LƯU THÔNG TIN</button>
                 </div>
             </fieldset>
         </form>

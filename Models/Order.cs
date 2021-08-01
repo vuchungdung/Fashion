@@ -31,6 +31,7 @@ namespace Fashion.Models
         public DateTime CreatedDate { set; get; }
         public int CreatedBy { set; get; }
         public int Status { set; get; }
+        public float Total { get; set; }
         public string Code { get; set; }
         public int CustomerId { set; get; }
 

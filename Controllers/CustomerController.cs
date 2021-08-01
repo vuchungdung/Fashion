@@ -14,7 +14,16 @@ namespace Fashion.Controllers
         private FSDbContext db = new FSDbContext();
         public ActionResult Index()
         {
-            return View();
+            var cus = (Customer)Session["CUS"];
+            if(cus != null)
+            {
+                var entity = db.Customers.Where(x => x.Id == cus.Id).FirstOrDefault();
+                return View(entity);
+            }
+            else
+            {
+                return View("Index", "Home");
+            }
         }
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
@@ -49,7 +58,9 @@ namespace Fashion.Controllers
         }
         public ActionResult ListOrder()
         {
-            return View();
+            var cus = (Customer)Session["CUS"];
+            var entity = db.Orders.Where(x => x.CustomerId == cus.Id).ToList();
+            return View(entity);
         }
     }
 }
