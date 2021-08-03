@@ -1,9 +1,6 @@
-﻿using Fashion.Library;
-using Fashion.Models;
-using System;
-using System.Collections.Generic;
+﻿using Fashion.Models;
+using Fashion.ViewModel;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Fashion.Areas.Admin.Controllers
@@ -14,56 +11,28 @@ namespace Fashion.Areas.Admin.Controllers
         private FSDbContext db = new FSDbContext();
         public ActionResult Index()
         {
-            return View();
-        }
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Create(Customer model)
-        {
-            try
-            {
-                Customer entity = new Customer();
-                db.Customers.Add(entity);
-                db.SaveChanges();
-                Notification.set_flash("Thêm danh mục thành công!", "success");
-                return RedirectToAction("List");
-            }
-            catch
-            {
-                Notification.set_flash("Thêm danh mục thất bại!", "danger");
-                throw;
-            }
+            var query = from od in db.Orders
+                        join c in db.Customers
+                        on od.CustomerId equals c.Id
+                        where od.Status == 4
+                        group od by new { c.Id, c.Name, c.Email, c.Phone, c.Username, c.Address } into groupc
+                        orderby groupc.Key.Id descending
+                        select new CustomerViewModel()
+                        {
+                            Id = groupc.Key.Id,
+                            Name = groupc.Key.Name,
+                            Email = groupc.Key.Email,
+                            Phone = groupc.Key.Phone,
+                            Username = groupc.Key.Username,
+                            Count = groupc.Sum(c => c.Total)
+                        };
+            var result = query.ToList();
+            return View(result);
         }
         public ActionResult List()
         {
-            var result = db.Customers.OrderByDescending(x => x.Id).ToList();
+            var result = db.Customers.ToList();
             return View(result);
-        }
-        [HttpGet]
-        public ActionResult Update(int id)
-        {
-            var entity = db.Customers.Find(id);
-            return View(entity);
-        }
-        [HttpPost]
-        public ActionResult Update(Customer Customer)
-        {
-            try
-            {
-                Customer entity = db.Customers.Find(Customer.Id);
-                db.SaveChanges();
-                Notification.set_flash("Cập nhật danh mục thành công!", "success");
-                return RedirectToAction("List");
-            }
-            catch
-            {
-                Notification.set_flash("Cập nhật danh mục thất bại!", "danger");
-                throw;
-            }
         }
     }
 }

@@ -236,6 +236,7 @@
     <Compile Include="ViewModel\CartTotal.cs" />
     <Compile Include="ViewModel\CartViewModel.cs" />
     <Compile Include="ViewModel\CommentViewModel.cs" />
+    <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\OptionViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
@@ -6866,6 +6867,9 @@
     <Content Include="Areas\Admin\Views\UserAdmin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\UserAdmin\List.cshtml" />
     <Content Include="Areas\Admin\Views\UserAdmin\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerAdmin\List.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -6981,8 +6985,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\CustomerAdmin\" />
-    <Folder Include="Areas\Admin\Views\OrderAdmin\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
