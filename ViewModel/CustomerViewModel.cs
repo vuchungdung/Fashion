@@ -14,5 +14,10 @@ namespace Fashion.ViewModel
         public string Phone { get; set; }
         public string Username { get; set; }
         public float Count { get; set; }
+        public int choxacnhanh { get; set; }
+        public int xacnhan { get; set; }
+        public int danggiao { get; set; }
+        public int dathanhtoan { get; set; }
+        public int dahuy { get; set; }
     }
 }

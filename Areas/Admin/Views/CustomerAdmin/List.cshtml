@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fashion.Models.Customer>
+﻿@model IEnumerable<Fashion.ViewModel.CustomerViewModel>
 @{
     ViewBag.Title = "List";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -53,11 +53,13 @@
                         <thead>
                             <tr>
                                 <th>Tên khách hàng</th>
-                                <th>Địa chỉ</th>
-                                <th>Email</th>
-                                <th>Điện thoại</th>
                                 <th>Tài khoản</th>
-                                <th>Ngày đăng ký</th>
+                                <th>Địa chỉ</th>
+                                <th>Chờ</th>
+                                <th>Xác nhận</th>
+                                <th>Giao</th>
+                                <th>Thanh toán</th>
+                                <th>Hủy</th>
                                 <th style="width:10%;text-align:center">Thao tác</th>
                             </tr>
                         </thead>
@@ -67,11 +69,13 @@
                                 <tr>
 
                                     <td>@item.Name</td>
+                                    <td>@item.Username</td>
                                     <td>@item.Address</td>
-                                    <td>@item.Email</td>
-                                    <td>@item.Phone</td>
-                                    <th>@item.Username</th>
-                                    <td>@item.CreatedDate.ToString("dd-MM-yyyy hh:MM:ss")</td>
+                                    <td style="font-weight:600;color:red">@item.choxacnhanh</td>
+                                    <th style="font-weight:600;color:red">@item.xacnhan</th>
+                                    <td style="font-weight:600;color:red">@item.danggiao</td>
+                                    <td style="font-weight:600;color:red">@item.dathanhtoan</td>
+                                    <td style="font-weight:600;color:red">@item.dahuy</td>
                                     <td class="text-center">
                                         <a onclick="deleteConfirm(this)" id="@item.Id" data-toggle="modal" data-target="#myModal1">
                                             <i style="color:red" class="fa fa-fw fa-trash"></i>
@@ -83,11 +87,13 @@
                         <tfoot>
                             <tr>
                                 <th>Tên khách hàng</th>
-                                <th>Địa chỉ</th>
-                                <th>Email</th>
-                                <th>Điện thoại</th>
                                 <th>Tài khoản</th>
-                                <th>Ngày đăng ký</th>
+                                <th>Địa chỉ</th>
+                                <th>Chờ</th>
+                                <th>Xác nhận</th>
+                                <th>Giao</th>
+                                <th>Thanh toán</th>
+                                <th>Hủy</th>
                                 <th style="width:10%;text-align:center">Thao tác</th>
                             </tr>
                         </tfoot>
