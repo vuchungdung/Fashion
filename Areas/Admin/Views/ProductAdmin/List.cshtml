@@ -84,9 +84,6 @@
                                         <input type="checkbox" onclick="changeShow(this)" id="@item.ID" @(item.Status == true ? "checked" : "") />
                                     </td>
                                     <td class="text-center">
-                                        <a onclick="viewDetail(this)" id="@item.ID" data-toggle="modal" data-target="#myModal1">
-                                            <i style="color:gray" class="fa fa-fw fa-eye"></i>
-                                        </a>
                                         <a onclick="deleteConfirm(this)" id="@item.ID" data-toggle="modal" data-target="#myModal">
                                             <i style="color:red" class="fa fa-fw fa-trash"></i>
                                         </a>

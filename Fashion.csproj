@@ -239,6 +239,7 @@
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\OptionViewModel.cs" />
+    <Compile Include="ViewModel\OrderDetailViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -6870,6 +6871,7 @@
     <Content Include="Areas\Admin\Views\OrderAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerAdmin\List.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderAdmin\Detail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

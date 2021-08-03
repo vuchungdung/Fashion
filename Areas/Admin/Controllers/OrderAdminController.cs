@@ -1,5 +1,6 @@
 ﻿using Fashion.Library;
 using Fashion.Models;
+using Fashion.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +33,18 @@ namespace Fashion.Areas.Admin.Controllers
                         join p in db.Products on od.ProductId equals p.ID
                         join s in db.Sizes on od.SizeId equals s.ID
                         join c in db.Colors on od.ColorId equals c.ID
-                        select new { };
-            var result = "";
+                        where o.ID == Id
+                        select new OrderDetailViewModel()
+                        {
+                            Name = p.Name,
+                            SizeName = s.Name,
+                            ColorName = c.Name,
+                            Quantity = od.Quantity,
+                            Price = od.Price,
+                            Total = od.Price * od.Quantity
+                        };
+
+            var result = query.ToList();
             return View(result);
         }
     }

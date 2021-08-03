@@ -66,7 +66,7 @@
                                  <tr>
 
                                     <td>@item.CustomerName</td>
-                                    <td>@item.CustomerAddress</td>
+                                    <td>@item.CustomerMessage</td>
                                     <td>@item.CreatedDate.ToString("dd-MM-yyyy hh:MM:ss")</td>
                                     <td>@item.CustomerMobile</td>
                                     <td style="font-weight:600;color:red">@item.Total VNĐ</td>
@@ -78,7 +78,7 @@
                                         <input type="radio" name="status_@item.ID" onclick="changeStatus(this,5)" value="5" id="@item.ID" @(item.Status == 5 ? "checked" : "") /> Hủy đơn <br />
                                     </td>
                                     <td class="text-center">
-                                        <a onclick="viewDetail(this)" id="@item.ID" data-toggle="modal" data-target="#myModal1">
+                                        <a href="/admin/orderadmin/detail/@item.ID">
                                             <i style="color:gray" class="fa fa-fw fa-eye"></i>
                                         </a>
                                     </td>
@@ -105,25 +105,6 @@
     </div>
     <!-- /.row -->
 </section>
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Bạn đang yêu cầu xóa dữ liệu</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                Bạn có thật sự muốn xóa dữ liệu này ?
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="deleteBtn" class="btn btn-danger" data-dismiss="modal">Xóa</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-
-        </div>
-
-    </div>
-</div>
 <script>
     function changeStatus(xthis,st) {
         var xid = xthis.id;
