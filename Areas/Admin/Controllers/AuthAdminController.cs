@@ -31,7 +31,7 @@ namespace Fashion.Areas.Admin.Controllers
         {
             FormsAuthentication.SignOut();
             Session.Clear();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "AdminAdmin");
         }
         public void setCookie(string name, string username ="")
         {

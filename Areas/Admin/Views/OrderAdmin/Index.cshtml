@@ -55,6 +55,7 @@
                                 <th>Địa chỉ giao</th>
                                 <th>Ngày đặt</th>
                                 <th>Phone</th>
+                                <th>Mã giảm giá</th>
                                 <th>Tổng tiền</th>
                                 <th>Trạng thái</th>
                                 <th style="width:10%;text-align:center">Thao tác</th>
@@ -69,6 +70,7 @@
                                     <td>@item.CustomerMessage</td>
                                     <td>@item.CreatedDate.ToString("dd-MM-yyyy hh:MM:ss")</td>
                                     <td>@item.CustomerMobile</td>
+                                    <td>@item.Code</td>
                                     <td style="font-weight:600;color:red">@item.Total VNĐ</td>
                                     <td>
                                         <input type="radio" name="status_@item.ID" onclick="changeStatus(this,1)" value="1" id="@item.ID" @(item.Status == 1 ? "checked" : "") /> Chờ xác nhận <br />
@@ -91,6 +93,7 @@
                                 <th>Địa chỉ giao</th>
                                 <th>Ngày đặt</th>
                                 <th>Phone</th>
+                                <th>Mã giảm giá</th>
                                 <th>Tổng tiền</th>
                                 <th>Trạng thái</th>
                                 <th style="width:10%;text-align:center">Thao tác</th>

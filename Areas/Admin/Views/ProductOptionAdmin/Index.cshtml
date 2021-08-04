@@ -44,6 +44,7 @@
                         <th>Hình ảnh</th>
                         <th>Giá nhập</th>
                         <th>Đơn giá</th>
+                        <th>Mã QR</th>
                         <th>Giá khuyến mại</th>
                     </tr>
                 </thead>
@@ -56,6 +57,9 @@
                         </td>
                         <td>@product.OriginalPrice</td>
                         <td>@product.Price</td>
+                        <td>
+                            <img src="@product.QrCode" style="width:100px;height:80px" class="img" />
+                        </td>
                         <td>@product.PromotionPrice</td>
                     </tr>
                 </tbody>
@@ -65,6 +69,7 @@
                         <th>Hình ảnh</th>
                         <th>Giá nhập</th>
                         <th>Đơn giá</th>
+                        <th>Mã QR</th>
                         <th>Giá khuyến mại</th>
                     </tr>
                 </tfoot>

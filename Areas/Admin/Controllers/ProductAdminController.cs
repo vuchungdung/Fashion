@@ -1,7 +1,10 @@
 ﻿using Fashion.Library;
 using Fashion.Models;
+using QRCoder;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -41,6 +44,21 @@ namespace Fashion.Areas.Admin.Controllers
                 entity.ViewCount = 0;
                 entity.Status = product.Status;
                 entity.CreatedDate = DateTime.Now;
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(entity.Alias, QRCodeGenerator.ECCLevel.Q);
+                System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
+                imgBarCode.Height = 150;
+                imgBarCode.Width = 150;
+                using (Bitmap bitMap = qrCode.GetGraphic(20))
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                        byte[] byteImage = ms.ToArray();
+                        imgBarCode.ImageUrl = "data:image/png;charset=utf-8;base64," + Convert.ToBase64String(byteImage);
+                    }
+                }
+                entity.QrCode = imgBarCode.ImageUrl;
                 db.Products.Add(entity);
                 db.SaveChanges();
                 Notification.set_flash("Thêm mới sản phẩm thành công!", "success");
@@ -81,6 +99,21 @@ namespace Fashion.Areas.Admin.Controllers
                 entity.Description = product.Description;
                 entity.Content = product.Content;
                 entity.Status = product.Status;
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(entity.Alias, QRCodeGenerator.ECCLevel.Q);
+                System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
+                imgBarCode.Height = 150;
+                imgBarCode.Width = 150;
+                using (Bitmap bitMap = qrCode.GetGraphic(20))
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                        byte[] byteImage = ms.ToArray();
+                        imgBarCode.ImageUrl = "data:image/png;charset=utf-8;base64," + Convert.ToBase64String(byteImage);
+                    }
+                }
+                entity.QrCode = imgBarCode.ImageUrl;
                 db.SaveChanges();
                 Notification.set_flash("Cập nhật sản phẩm thành công!", "success");
                 return RedirectToAction("List");

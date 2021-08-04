@@ -65,6 +65,10 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="QRCoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -6404,6 +6408,7 @@
     <Content Include="Assets\images\products\img38.jpg" />
     <Content Include="Assets\images\products\img39.jpg" />
     <Content Include="Assets\images\qr\qr.png" />
+    <Content Include="Assets\images\size.jpg" />
     <Content Include="Assets\images\sliders\img04.jpg" />
     <Content Include="Assets\images\sliders\img05.jpg" />
     <Content Include="Assets\images\svg\rings.svg" />

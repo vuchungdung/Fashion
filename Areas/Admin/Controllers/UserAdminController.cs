@@ -1,4 +1,5 @@
-﻿using Fashion.Library;
+﻿using Fashion.Dtos;
+using Fashion.Library;
 using Fashion.Models;
 using System;
 using System.Collections.Generic;
@@ -64,13 +65,14 @@ namespace Fashion.Areas.Admin.Controllers
             {
                 User entity = db.Users.Find(model.Id);
                 entity.Name = model.Name;
-                entity.Username = model.Username;
-                entity.Password = XString.ToMD5(model.Password);
+                if(entity.Password != model.Password)
+                {
+                    entity.Password = XString.ToMD5(model.Password);
+                }
                 entity.Email = model.Email;
                 entity.Phone = model.Phone;
                 entity.Status = model.Status;
                 entity.Image = model.Image;
-                entity.CreatedDate = DateTime.Now;
                 db.SaveChanges();
                 Notification.set_flash("Cập nhật người dùng thành công!", "success");
                 return RedirectToAction("List");
@@ -85,11 +87,20 @@ namespace Fashion.Areas.Admin.Controllers
         {
             try
             {
-                var model = db.Users.Where(x => x.Id == id).FirstOrDefault();
-                db.Users.Remove(model);
-                db.SaveChanges();
-                Notification.set_flash("Xóa thành công!", "success");
-                return Json(true, JsonRequestBehavior.AllowGet);
+                var user = (UserSession)Session["USER"];
+                if(user.Id != id)
+                {
+                    var model = db.Users.Where(x => x.Id == id).FirstOrDefault();
+                    db.Users.Remove(model);
+                    db.SaveChanges();
+                    Notification.set_flash("Xóa thành công!", "success");
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    Notification.set_flash("Tài khoản này đang được đăng nhập. Không thể xóa", "warning");
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
             }
             catch
             {
@@ -97,7 +108,7 @@ namespace Fashion.Areas.Admin.Controllers
                 throw;
             }
         }
-        public JsonResult ChangeShow(int id, bool status)
+        public JsonResult ChangeStatus(int id, bool status)
         {
             var model = db.Users.Where(x => x.Id == id).FirstOrDefault();
             model.Status = status;
