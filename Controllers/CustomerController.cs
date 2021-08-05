@@ -74,5 +74,12 @@ namespace Fashion.Controllers
             Session.Clear();
             return RedirectToAction("Index", "Home");
         }
+        public ActionResult Cancel(int Id)
+        {
+            var ressult = db.Orders.Where(x => x.ID == Id).FirstOrDefault();
+            ressult.Status = 5;
+            db.SaveChanges();
+            return RedirectToAction("ListOrder");
+        }
     }
 }

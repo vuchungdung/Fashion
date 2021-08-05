@@ -57,7 +57,7 @@ namespace Fashion.Controllers
                     {
                         foreach (var item in list)
                         {
-                            if (item.ProductID == pid)
+                            if (item.ProductID == pid && item.SizeId == sId && item.ColorId == cId)
                                 item.Quantity += qty;
                             return Json(new { result = 2 }, JsonRequestBehavior.AllowGet);
                         }
