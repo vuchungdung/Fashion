@@ -6991,7 +6991,6 @@
     <Content Include="Views\Shared\_Cart.cshtml" />
     <Content Include="Views\Cart\ViewCart.cshtml" />
     <Content Include="Views\Cart\Success.cshtml" />
-    <Content Include="Views\Customer\ChangePass.cshtml" />
     <Content Include="Views\Customer\ListOrder.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>

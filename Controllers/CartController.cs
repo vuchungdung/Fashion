@@ -58,8 +58,10 @@ namespace Fashion.Controllers
                         foreach (var item in list)
                         {
                             if (item.ProductID == pid && item.SizeId == sId && item.ColorId == cId)
+                            {
                                 item.Quantity += qty;
-                            return Json(new { result = 2 }, JsonRequestBehavior.AllowGet);
+                                return Json(new { result = 2 }, JsonRequestBehavior.AllowGet);
+                            }
                         }
                     }
                     else
@@ -109,6 +111,9 @@ namespace Fashion.Controllers
             db.SaveChanges();
             foreach (var c in (List<CartViewModel>)Session["Cart"])
             {
+                var product = db.ProductOptions.Where(x => x.ProductId == c.ProductID && x.ColorId == c.ColorId && x.SizeId == c.SizeId).FirstOrDefault();
+                product.Count = product.Count - c.Quantity;
+                db.SaveChanges();
                 var orderdetails = new OrderDetail();
                 orderdetails.OrderId = order.ID;
                 orderdetails.Price = (float)c.Price;
@@ -157,6 +162,7 @@ namespace Fashion.Controllers
         {
             if (Session["CUS"] != null && Session["Cart"] != null)
             {
+                var cus = (Customer)Session["CUS"];
                 var carttotal = new CartTotal();
                 float? _price = 0;
                 var cart = (List<Fashion.ViewModel.CartViewModel>)Session["Cart"];
@@ -165,6 +171,7 @@ namespace Fashion.Controllers
                     _price = _price + item.Price * item.Quantity;
                 }
                 carttotal.Total = _price;
+                carttotal.Payment = _price;
                 if (String.IsNullOrEmpty(code))
                 {
                     carttotal.Payment = _price;
@@ -172,11 +179,25 @@ namespace Fashion.Controllers
                 else
                 {
                     var entity = db.Discounts.Where(x => x.Code == code && x.Status == true).FirstOrDefault();
-                    if(entity != null)
+                    var ischeck = entity.CreatedDate.AddDays(entity.Time);
+                    var od = db.Orders.Where(x => x.Code == code && x.CustomerId == cus.Id).FirstOrDefault();
+                    if (entity != null)
                     {
-                        carttotal.Value = entity.Value.ToString();
-                        carttotal.Code = code;
-                        carttotal.Payment = _price - ((_price * entity.Value) / 100);
+                        ViewBag.Error = null;
+                        if (ischeck < DateTime.Now)
+                        {
+                            ViewBag.Error = "Mã giảm giá không hợp lệ";
+                        }
+                        else if (od != null)
+                        {
+                            ViewBag.Error="Mã giảm giá không hợp lệ";
+                        }
+                        else
+                        {
+                            carttotal.Value = entity.Value.ToString();
+                            carttotal.Code = code;
+                            carttotal.Payment = _price - ((_price * entity.Value) / 100);
+                        }
                     }
                 }
                 Session["CartPrint"] = carttotal;

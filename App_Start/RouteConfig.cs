@@ -13,6 +13,12 @@ namespace Fashion
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
+               name: "Sản phẩm",
+               url: "san-pham-{alias}-{id}",
+               defaults: new { controller = "Product", action = "Index", id = UrlParameter.Optional },
+               namespaces: new[] { "FEE.Controllers" }
+           );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

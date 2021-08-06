@@ -59,11 +59,11 @@
                     {
                         <div class="mt-product4 mt-paddingbottom20">
                             <div class="img">
-                                <a href="/product/index/@item.ID"><img src="@item.Image" alt="image description"></a>
+                                <a href="san-pham-@item.Alias-@item.ID"><img src="@item.Image" alt="image description"></a>
                             </div>
                             <div class="text">
                                 <div class="frame">
-                                    <strong><a href="/product/index/@item.ID">@item.Name</a></strong>
+                                    <strong><a href="san-pham-@item.Alias-@item.ID">@item.Name</a></strong>
                                 </div>
                                 <del class="off">@item.Price VNĐ</del>
                                 <span class="price">@item.PromotionPrice VNĐ</span>
@@ -77,19 +77,7 @@
                 <header class="mt-shoplist-header">
                     <!-- btn-box start here -->
                     <div class="btn-box">
-                        <ul class="list-inline">
-                            <li>
-                                <a href="#" class="drop-link">
-                                    Sắp xếp <i aria-hidden="true" class="fa fa-angle-down"></i>
-                                </a>
-                                <div class="drop">
-                                    <ul class="list-unstyled">
-                                        <li><a href="#">Giá giảm</a></li>
-                                        <li><a href="#">Giá tăng</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
+                        
                     </div><!-- btn-box end here -->
                 </header><!-- mt shoplist header end here -->
                 <!-- mt productlisthold start here -->
@@ -101,7 +89,7 @@
                                 <div class="box">
                                     <div class="b1">
                                         <div class="b2">
-                                            <a href="/product/index/@item.ID"><img src="@item.Image" alt="image description"></a>
+                                            <a href="san-pham-@item.Alias-@item.ID"><img src="@item.Image" alt="image description"></a>
                                             <ul class="links">
                                                 <li><a href="#"><i class="icon-handbag"></i><span>Thêm giỏ hàng</span></a></li>
                                             </ul>
@@ -109,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="txt">
-                                    <strong class="title"><a href="/product/index/@item.ID">@item.Name</a></strong>
+                                    <strong class="title"><a href="san-pham-@item.Alias-@item.ID">@item.Name</a></strong>
                                     <span class="price"><span>@(item.ActivePromotion == true ? item.PromotionPrice : item.Price)</span> VNĐ</span>
                                 </div>
                             </div>

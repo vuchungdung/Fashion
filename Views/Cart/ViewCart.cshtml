@@ -120,6 +120,10 @@
                         <form action="/cart/viewcart" class="coupon-form" method="post">
                             <fieldset>
                                 <div class="mt-holder">
+                                    @if (ViewBag.Error != null)
+                                    {
+                                        <p style="font-size:16px;color:red;font-weight:600">@ViewBag.Error</p>
+                                    }
                                     <input type="text" class="form-control" name="code" placeholder="Mã giảm giá">
                                     <button type="submit">ÁP DỤNG</button>
                                 </div>

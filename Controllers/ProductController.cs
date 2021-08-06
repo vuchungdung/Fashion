@@ -32,7 +32,7 @@ namespace Fashion.Controllers
             ViewBag.ListProducts = db.Products.Where(x => x.ID != product.ID && x.CategoryId == product.CategoryId).Take(5).ToList();
             return View(product);
         }
-        public ActionResult List(int? id, int page = 1, int pageSize = 9)
+        public ActionResult List(int? id, int page = 1, int pageSize = 9, string type="")
         {
             IPagedList<Product> result = null;
             var list = db.Products.ToList();
@@ -40,8 +40,21 @@ namespace Fashion.Controllers
             {
                 list = list.Where(x => x.CategoryId == id).ToList();
             }
+            if (!String.IsNullOrEmpty(type))
+            {
+                if(type == "giam")
+                {
+                    list = list.OrderByDescending(x => x.Price).ToList();
+                }
+                if(type == "tang")
+                {
+                    list = list.OrderBy(x => x.Price).ToList();
+                }
+            }
             result = list.ToPagedList(page, pageSize);
             ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Id = id;
+            ViewBag.Type = type;
             ViewBag.Products = list.Where(x => x.ActivePromotion == true).ToList();
             return View(result);
         }

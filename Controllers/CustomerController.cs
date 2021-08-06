@@ -52,9 +52,20 @@ namespace Fashion.Controllers
             db.SaveChanges();
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ChangePass()
+        public ActionResult Update(Customer model)
         {
-            return View();
+            var entity = db.Customers.Find(model.Id);
+            entity.Username = model.Username;
+            if(entity.Password != model.Password)
+            {
+                entity.Password = XString.ToMD5(model.Password);
+            }
+            entity.Address = model.Address;
+            entity.Phone = model.Phone;
+            entity.Name = model.Name;
+            entity.Email = model.Email;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Customer");
         }
         public ActionResult ListOrder()
         {
@@ -76,8 +87,15 @@ namespace Fashion.Controllers
         }
         public ActionResult Cancel(int Id)
         {
-            var ressult = db.Orders.Where(x => x.ID == Id).FirstOrDefault();
-            ressult.Status = 5;
+            var result = db.Orders.Where(x => x.ID == Id).FirstOrDefault();
+            result.Status = 5;
+            var list = db.OrderDetails.Where(x => x.OrderId == result.ID).ToList();
+            foreach(var item in list)
+            {
+                var product = db.ProductOptions.Where(x => x.ProductId == item.ProductId && x.ColorId == item.ColorId && x.SizeId == item.SizeId).FirstOrDefault();
+                product.Count = product.Count + item.Quantity;
+                db.SaveChanges();
+            }
             db.SaveChanges();
             return RedirectToAction("ListOrder");
         }
