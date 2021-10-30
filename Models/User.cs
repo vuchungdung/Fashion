@@ -26,6 +26,7 @@ namespace Fashion.Models
         [Column(TypeName = "VARCHAR")]
         [Index(IsUnique = true)]
         public string Username { get; set; }
+        [Required]
         public string Password { get; set; }
         public bool Status { get; set; }
         public string Image { get; set; }

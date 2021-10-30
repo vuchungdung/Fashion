@@ -12,6 +12,7 @@ namespace Fashion.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
         public virtual IEnumerable<ProductTag> ProductTags { set; get; }
     }

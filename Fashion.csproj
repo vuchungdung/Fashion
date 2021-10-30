@@ -224,6 +224,10 @@
     <Compile Include="Migrations\202108011205240_version_1.1.2.designer.cs">
       <DependentUpon>202108011205240_version_1.1.2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110300638179_version_1.1.3.cs" />
+    <Compile Include="Migrations\202110300638179_version_1.1.3.designer.cs">
+      <DependentUpon>202110300638179_version_1.1.3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Color.cs" />
@@ -7053,6 +7057,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108011205240_version_1.1.2.resx">
       <DependentUpon>202108011205240_version_1.1.2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110300638179_version_1.1.3.resx">
+      <DependentUpon>202110300638179_version_1.1.3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -18,9 +18,12 @@ namespace Fashion.Models
         [Column(TypeName = "VARCHAR")]
         [Index(IsUnique = true)]
         public string Code { get; set; }
+        [Required]
         public int Value { get; set; }
         public string Detail { get; set; }
+        [Required]
         public int Time { get; set; }
+        [Required]
         public bool Status { get; set; }
         public DateTime CreatedDate { get; set; }
 

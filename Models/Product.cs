@@ -16,6 +16,7 @@ namespace Fashion.Models
         public int ID { set; get; }
         [Required]
         [MaxLength(256)]
+        [Column(TypeName = "NVARCHAR")]
         public string Name { set; get; }
         [Required]
         [MaxLength(256)]
@@ -24,11 +25,15 @@ namespace Fashion.Models
         public int CategoryId { set; get; }
         [MaxLength(256)]
         public string Image { set; get; }
+        [Required]
         public float OriginalPrice { get; set; }
+        [Required]
         public float Price { set; get; }
         public float? PromotionPrice { set; get; }
         [MaxLength(500)]
+        [Column(TypeName = "NVARCHAR")]
         public string Description { set; get; }
+        [Column(TypeName = "NVARCHAR")]
         public string Content { set; get; }
         public bool? ActivePromotion { set; get; }
         public string QrCode { get; set; }
